@@ -1,4 +1,4 @@
-# Falco + Auditd fileless-execution detection in Docker — public research export (Group 8, IAM302)
+# Falco + Auditd fileless-execution detection in Docker — public research export (IAM302)
 
 **ANONYMOUS REPOSITORY URL: NOT AVAILABLE — PUBLICATION PENDING**
 
