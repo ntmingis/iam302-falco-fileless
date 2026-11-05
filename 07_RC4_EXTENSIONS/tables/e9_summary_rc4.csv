@@ -1,0 +1,3 @@
+config,rc3_proxy_specific,rc3 Wilson,altscope_specific,alt Wilson,proxy_misclassified_recovered_by_alt
+AppArmor docker-default,10/25,"10/25 Wilson [0.23,0.59]",10/25,"10/25 Wilson [0.23,0.59]",0
+AppArmor unconfined,0/25,"0/25 Wilson [0.00,0.13]; CP1-sided95 upper 0.11",25/25,"25/25 Wilson [0.87,1.00]",25

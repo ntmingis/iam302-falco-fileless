@@ -1,0 +1,15 @@
+id,claim,value,role,source,status
+RC4-1,RC4 preservation baseline,1895 files hashed,CONTEXT,rc4/baseline/PRE_RC4_SHA256.txt,VERIFIED
+RC4-2,RC3 + raw evidence unchanged by RC4,PRE hash list re-verifies 149/149 RC3 & 1895/1895,PRIMARY,rc4/integrity/POST_RC4_SHA256.txt,VERIFIED
+RC4-3,E6 community rulesets load/validate Falco 0.45,0 err/0 warn; sandbox enabled 81->95,CONTEXT,rc4/rules/e6_enable_all_sandbox.yaml,VERIFIED
+RC4-4,DIAG-FIELDS: 4 branch fields captured at DEV-T1r memfd execve,name=memfd:runc_clon exe=x exepath=memfd:runc_cloned:/proc/self/exe pname=containerd-shim,PRIMARY,rc4/tables/p1_results_rc4.csv,VERIFIED
+RC4-5a,B1 proc.name non-match (memfd prefixed),default fired 5/5 NT-B1,PRIMARY,branch_isolation_raw.json:7,VERIFIED
+RC4-5b,B4 proc.exe argv0 bypass,default suppressed 0/5 NT-B4,PRIMARY,branch_isolation_raw.json:4,VERIFIED
+RC4-6,R4 behaviour A/B/D/E,A TP 5/5; B/D/E silent 0/5,PRIMARY,rc4/tables/r4_scenarios_rc4.csv,PARTIAL
+RC4-7,R4 scenario C (legit runc memfd clone),not reproducible (runc 1.3.3),PRIMARY,docs/r4_mitigation_evaluation.md,NOT REPRODUCIBLE
+RC4-8,E6 community additional direct detection on lab variants,0/19 both conditions,PRIMARY,rc4/tables/e6_summary_rc4.csv,VERIFIED
+RC4-9a,"E8 independent-external direct, default","1/8 Wilson [0.02,0.47]",PRIMARY,rc4/tables/e8_variant_summary_rc4.csv,VERIFIED
+RC4-9b,"E8 independent-external direct, v1","5/8 Wilson [0.31,0.86]",PRIMARY,rc4/tables/e8_variant_summary_rc4.csv,VERIFIED
+RC4-9c,"E8 independent-external direct, default+v1+v2","5/8 Wilson [0.31,0.86]",PRIMARY,rc4/tables/e8_variant_summary_rc4.csv,VERIFIED
+RC4-10,E9 RC3 Auditd proxy recall under AppArmor unconfined,0/25 (proxy) vs 25/25 (PID/cgroup-lineage),PRIMARY,rc4/tables/e9_summary_rc4.csv,VERIFIED
+RC4-11,"E7 second-sensor comparison (Tetragon v1.7.1, Tracee v0.23.2)",Tetragon base 0/4 covered; Tracee v0.23.2 7/9 covered,CONTEXT,rc4/tables/e7_*_summary.csv,VERIFIED

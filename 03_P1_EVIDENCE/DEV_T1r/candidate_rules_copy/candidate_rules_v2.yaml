@@ -1,0 +1,88 @@
+# candidate_rules_v2.yaml - IAM302 revision 2026-11-02. TRANG THAI: NOT TESTED (chi validate cu phap bang `falco -V`).
+#   File nay KHONG duoc nap vao Falco dang chay va KHONG thay the rules/custom_rules.yaml (v1, sha256 8811248c..., da dong bang
+#   va duoc dung cho moi so lieu E3/E4). Moi so lieu trong bao cao den tu v1. Cac rule duoi day la gia thuyet giam thieu cho
+#   cac nguyen nhan bo lot phan tich o Muc "Evasion Layers and Root Causes" va can mot dot thi nghiem moi (de xuat E8) de do.
+# Thiet ke tu chinh cac bien the E4 bi lot -> neu do tren E4 thi E4 KHONG con la tap unseen cho v2; phai do tren tap doc lap (E8).
+# Gia tri chuoi cua proc.stdin.type ("pipe") lay theo ten loai fd cua Falco nhung CHUA kiem bang probe tren may lab.
+# Truong da xac nhan co trong Falco 0.45.0 (`falco --list=syscall`, 2026-11-02): proc.exepath, proc.pexepath, proc.stdin.type,
+#   proc.stdin.name, proc.stdout.type, proc.is_exe_from_memfd, evt.arg.filename.
+# Nap cung: /etc/falco/falco_rules.yaml (macro spawned_process, container, shell_binaries) va rules/custom_rules.yaml (lab_*).
+
+# ---------------------------------------------------------------
+# R1 - /dev/shm theo duong dan kernel (vs argv0). Nguyen nhan: rule default dung proc.exe = argv[0] (E4-T2b: exec -a kworker).
+# H: proc.exepath do kernel cung cap nen khong doi theo argv0. Bang chung mot phan: alert T2 (E1) co proc.exepath=/dev/shm/... .
+# FP: ung dung hop le chay binary tu /dev/shm (hiem); Docker mac dinh mount /dev/shm noexec nen exec se that bai (evt.res != SUCCESS).
+- rule: LAB2 Exec from /dev/shm by kernel exepath
+  desc: Exec thanh cong ma duong dan thuc thi (kernel) hoac filename cua execve nam duoi /dev/shm, bat ke argv0 (T1059.004 / defense evasion)
+  condition: >
+    spawned_process and evt.res = SUCCESS
+    and (proc.exepath startswith "/dev/shm/" or evt.arg.filename startswith "/dev/shm/")
+    and not proc.exe startswith "/dev/shm/"
+  output: >
+    Exec from /dev/shm with masqueraded argv0 (exepath=%proc.exepath filename=%evt.arg.filename argv0=%proc.exe
+    cmd=%proc.cmdline parent=%proc.pname container=%container.name)
+  priority: WARNING
+  tags: [lab_candidate_v2, not_tested, fileless, T1036]
+
+# ---------------------------------------------------------------
+# R2 - interpreter doc chuong trinh tu stdin la pipe. Nguyen nhan: rule v1 chi xet -c/-e trong proc.args (E4-T4b: python3 -).
+# FP lon: `docker exec -i ... python3 -` hop le, CI script; can allowlist theo image/parent truoc khi dung.
+- rule: LAB2 Interpreter reading program from stdin pipe in container
+  desc: python/perl/ruby/node chay khong co file script (args rong hoac "-") va stdin la pipe (T1059.006)
+  condition: >
+    spawned_process and evt.res = SUCCESS and container and lab_interpreter_proc
+    and (proc.args = "" or proc.args = "-" or proc.args startswith "- ")
+    and proc.stdin.type = pipe
+  output: >
+    Interpreter reading program from stdin pipe (cmd=%proc.cmdline stdin=%proc.stdin.name parent=%proc.pname
+    pcmd=%proc.pcmdline container=%container.name)
+  priority: NOTICE
+  tags: [lab_candidate_v2, not_tested, fileless, T1059.006]
+
+# ---------------------------------------------------------------
+# R3 - shell doc script tu stdin la pipe, KHONG phu thuoc pipeline nam trong cmdline cua cha.
+# Nguyen nhan: rule v1 can proc.pcmdline chua "curl ... |" (E4-T5b: pipeline nam trong /tmp/dl.sh -> lot).
+# FP lon: entrypoint dang `echo ... | sh`, `docker exec -i ctr sh` tuong tac qua pipe. Can allowlist; muc NOTICE.
+- rule: LAB2 Shell reading script from stdin pipe in container
+  desc: shell khong tham so (hoac -s) co stdin la pipe trong container - mo hinh chung cua `<downloader> | sh` (T1059.004)
+  condition: >
+    spawned_process and evt.res = SUCCESS and container and proc.name in (shell_binaries)
+    and (proc.args = "" or proc.args = "-s" or proc.args startswith "-s ")
+    and proc.stdin.type = pipe
+  output: >
+    Shell reading script from stdin pipe (shell=%proc.name stdin=%proc.stdin.name parent=%proc.pname
+    pcmd=%proc.pcmdline gparent=%proc.aname[2] container=%container.name)
+  priority: NOTICE
+  tags: [lab_candidate_v2, not_tested, fileless, T1059.004]
+
+# R3b - downloader ghi stdout vao pipe (dau con lai cua `curl | sh`). Ket hop R3 theo container+thoi gian o phia SIEM.
+- rule: LAB2 Downloader writing to pipe in container
+  desc: curl/wget co stdout la pipe trong container (T1105 / T1059.004 khi ket hop R3)
+  condition: >
+    spawned_process and evt.res = SUCCESS and container and proc.name in (lab_downloaders)
+    and proc.stdout.type = pipe
+  output: >
+    Downloader output piped (cmd=%proc.cmdline stdout=%proc.stdout.name parent=%proc.pname pcmd=%proc.pcmdline
+    container=%container.name)
+  priority: NOTICE
+  tags: [lab_candidate_v2, not_tested, T1105]
+
+# ---------------------------------------------------------------
+# R4 - memfd exec bi ngoai le #3444 bo qua nhung cha khong phai runc that.
+# Nguyen nhan: macro known_memfd_execution_processes (falcosecurity/rules PR #268, commit 4633f29) dua tren chuoi do tien trinh
+#   tu dat (ten memfd -> proc.exepath; argv0 -> proc.exe) va ten tien trinh cha (proc.pname, cung do tien trinh tu dat).
+# v1 "LAB memfd exec masquerading as runc clone" chi phu nhanh exepath/exe; R4 phu ca nhanh proc.name/proc.pname = runc.
+# Da VERIFIED (DEV-T1r): nhanh exepath. INFERRED, CHUA TEST: nhanh argv0. Nhanh pname=runc: probe 2026-10-20 doi ten cha bang prctl KHONG vuot qua
+#   (Falco ghi pname=python3); khoi chay cha tu file ten runc: CHUA TEST (NT-02).
+# FP: runc that dung memfd clone (runc >= 1.1.15, mot so cau hinh) va cha la binary runc tai duong dan khac danh sach -> them vao lab_runc_paths.
+- rule: LAB2 memfd exec covered by runc exception without real runc parent
+  desc: exec tu memfd khop ngoai le runc cua rule default nhung tien trinh cha khong chay tu binary runc that (T1620)
+  condition: >
+    spawned_process and evt.res = SUCCESS and proc.is_exe_from_memfd = true
+    and known_memfd_execution_processes
+    and not proc.pexepath in (lab_runc_paths)
+  output: >
+    memfd exec hidden by runc exception (exepath=%proc.exepath argv0=%proc.exe name=%proc.name parent=%proc.pname
+    parent_exepath=%proc.pexepath cmd=%proc.cmdline container=%container.name)
+  priority: CRITICAL
+  tags: [lab_candidate_v2, not_tested, fileless, T1620]

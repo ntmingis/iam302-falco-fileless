@@ -1,0 +1,204 @@
+PASS so trang = 19
+PASS 6 font deu nhung
+PASS khong co font thay the la: -
+PASS khong co ky tu loi U+FFFD
+PASS tieng Viet hien dung: 'Abstract'
+PASS tieng Viet hien dung: 'Tóm tắt'
+PASS tieng Viet hien dung: 'Related Work'
+PASS tieng Viet hien dung: 'Evasion Layers and Root Causes'
+PASS tieng Viet hien dung: 'Limitations'
+PASS tieng Viet hien dung: 'Responsible Disclosure'
+PASS tieng Viet hien dung: 'AI Usage Declaration'
+PASS tieng Viet hien dung: 'Artifact Manifest'
+PASS tieng Viet hien dung: 'Kết luận'
+PASS tieng Viet hien dung: 'Phụ lục'
+PASS trang 1 khong trang (ink=0.037)
+PASS trang 2 khong trang (ink=0.062)
+PASS trang 3 khong trang (ink=0.064)
+PASS trang 4 khong trang (ink=0.080)
+PASS trang 5 khong trang (ink=0.092)
+PASS trang 6 khong trang (ink=0.064)
+PASS trang 7 khong trang (ink=0.067)
+PASS trang 8 khong trang (ink=0.091)
+PASS trang 9 khong trang (ink=0.060)
+PASS trang 10 khong trang (ink=0.067)
+PASS trang 11 khong trang (ink=0.067)
+PASS trang 12 khong trang (ink=0.062)
+PASS trang 13 khong trang (ink=0.060)
+PASS trang 14 khong trang (ink=0.063)
+PASS trang 15 khong trang (ink=0.064)
+PASS trang 16 khong trang (ink=0.057)
+PASS trang 17 khong trang (ink=0.085)
+PASS trang 18 khong trang (ink=0.083)
+PASS trang 19 khong trang (ink=0.049)
+PASS khong co chu tran le
+PASS 4 caption Hinh = 4 anh trong DOCX
+PASS Hình 1 co caption trong PDF (trang [6])
+PASS Hình 1: caption cung trang voi anh (trang 6)
+PASS Hình 2 co caption trong PDF (trang [9])
+PASS Hình 2: caption cung trang voi anh (trang 9)
+PASS Hình 3 co caption trong PDF (trang [11])
+PASS Hình 3: caption cung trang voi anh (trang 11)
+PASS Hình 4 co caption trong PDF (trang [12])
+PASS Hình 4: caption cung trang voi anh (trang 12)
+PASS Bảng 1 co caption trong PDF (trang [4])
+PASS Bảng 1: caption khong mo coi o cuoi trang 4
+PASS Bảng 2 co caption trong PDF (trang [4])
+PASS Bảng 2: caption khong mo coi o cuoi trang 4
+PASS Bảng 3 co caption trong PDF (trang [5])
+PASS Bảng 3: caption khong mo coi o cuoi trang 5
+PASS Bảng 4 co caption trong PDF (trang [5])
+PASS Bảng 4: caption khong mo coi o cuoi trang 5
+PASS Bảng 5 co caption trong PDF (trang [6])
+PASS Bảng 5: caption khong mo coi o cuoi trang 6
+PASS Bảng 6 co caption trong PDF (trang [7])
+PASS Bảng 6: caption khong mo coi o cuoi trang 7
+PASS Bảng 7 co caption trong PDF (trang [7])
+PASS Bảng 7: caption khong mo coi o cuoi trang 7
+PASS Bảng 8 co caption trong PDF (trang [8])
+PASS Bảng 8: caption khong mo coi o cuoi trang 8
+PASS Bảng 9 co caption trong PDF (trang [8])
+PASS Bảng 9: caption khong mo coi o cuoi trang 8
+PASS Bảng 10 co caption trong PDF (trang [8])
+PASS Bảng 10: caption khong mo coi o cuoi trang 8
+PASS Bảng 11 co caption trong PDF (trang [9])
+PASS Bảng 11: caption khong mo coi o cuoi trang 9
+PASS Bảng 12 co caption trong PDF (trang [10])
+PASS Bảng 12: caption khong mo coi o cuoi trang 10
+PASS Bảng 13 co caption trong PDF (trang [17])
+PASS Bảng 13: caption khong mo coi o cuoi trang 17
+PASS Bảng 14 co caption trong PDF (trang [17])
+PASS Bảng 14: caption khong mo coi o cuoi trang 17
+PASS Bảng 15 co caption trong PDF (trang [17])
+PASS Bảng 15: caption khong mo coi o cuoi trang 17
+PASS Bảng 16 co caption trong PDF (trang [18])
+PASS Bảng 16: caption khong mo coi o cuoi trang 18
+PASS Bảng 17 co caption trong PDF (trang [18])
+PASS Bảng 17: caption khong mo coi o cuoi trang 18
+PASS strict P0 custom=1/4 default=0/4
+PASS so lieu '50/50' co trong PDF va khop CSV
+PASS so lieu 'default 1/7' co trong PDF va khop CSV
+PASS so lieu 'custom 4/7' co trong PDF va khop CSV
+PASS so lieu 'default 0/4, custom 1/4' co trong PDF va khop CSV
+PASS ky thuat T1 co trong PDF
+PASS ky thuat T2-host co trong PDF
+PASS ky thuat T2-ctr co trong PDF
+PASS ky thuat T2-ctr-exec co trong PDF
+PASS ky thuat T3a co trong PDF
+PASS ky thuat T3b co trong PDF
+PASS ky thuat T3c co trong PDF
+PASS ky thuat T4 co trong PDF
+PASS ky thuat T5 co trong PDF
+PASS ky thuat T6 co trong PDF
+PASS ky thuat T7 co trong PDF
+PASS claim C01 VERIFIED trong claim_evidence_p0.csv
+PASS claim C01 = '1' co trong PDF
+PASS claim C02 VERIFIED trong claim_evidence_p0.csv
+PASS claim C02 = '2' co trong PDF
+PASS claim C03 VERIFIED trong claim_evidence_p0.csv
+PASS claim C03 = '3' co trong PDF
+PASS claim C04 VERIFIED trong claim_evidence_p0.csv
+PASS claim C04 = '5/5' co trong PDF
+PASS claim C05 VERIFIED trong claim_evidence_p0.csv
+PASS claim C05 = '50/50' co trong PDF
+PASS claim C06 VERIFIED trong claim_evidence_p0.csv
+PASS claim C06 = '8/11' co trong PDF
+PASS claim C07 VERIFIED trong claim_evidence_p0.csv
+PASS claim C07 = 'direct,direct' co trong PDF
+PASS claim C08 VERIFIED trong claim_evidence_p0.csv
+PASS claim C08 = '1/7' co trong PDF
+PASS claim C09 VERIFIED trong claim_evidence_p0.csv
+PASS claim C09 = '4/7' co trong PDF
+PASS claim C10 VERIFIED trong claim_evidence_p0.csv
+PASS claim C10 = 'E4-T1b E4-T3d E4-T5c E4-T6b' co trong PDF
+PASS claim C11 VERIFIED trong claim_evidence_p0.csv
+PASS claim C11 = '0/4' co trong PDF
+PASS claim C12 VERIFIED trong claim_evidence_p0.csv
+PASS claim C12 = '1/4' co trong PDF
+PASS claim C13 VERIFIED trong claim_evidence_p0.csv
+PASS claim C13 = '0.25–0.84' co trong PDF
+PASS claim C14 VERIFIED trong claim_evidence_p0.csv
+PASS claim C14 = '0.05–0.70' co trong PDF
+PASS claim C14b VERIFIED trong claim_evidence_p0.csv
+PASS claim C14b = '0.00–0.49' co trong PDF
+PASS claim C15 VERIFIED trong claim_evidence_p0.csv
+PASS claim C15 = '0.41–0.72' co trong PDF
+PASS claim C16 VERIFIED trong claim_evidence_p0.csv
+PASS claim C16 = '0.11–0.47' co trong PDF
+PASS claim C17 VERIFIED trong claim_evidence_p0.csv
+PASS claim C17 = '1/4' co trong PDF
+PASS claim C17h VERIFIED trong claim_evidence_p0.csv
+PASS claim C17h = '2/5' co trong PDF
+PASS claim C17h-d VERIFIED trong claim_evidence_p0.csv
+PASS claim C17h-d = '0/5' co trong PDF
+PASS claim C17h-w VERIFIED trong claim_evidence_p0.csv
+PASS claim C17h-w = '0.12–0.77' co trong PDF
+PASS claim C18 VERIFIED trong claim_evidence_p0.csv
+PASS claim C18 = 'miss,direct' co trong PDF
+PASS claim C19 VERIFIED trong claim_evidence_p0.csv
+PASS claim C19 = '10/10' co trong PDF
+PASS claim C20 VERIFIED trong claim_evidence_p0.csv
+PASS claim C20 = '30' co trong PDF
+PASS claim C21 VERIFIED trong claim_evidence_p0.csv
+PASS claim C21 = '0/10' co trong PDF
+PASS claim C22 VERIFIED trong claim_evidence_p0.csv
+PASS claim C22 = '0.3' co trong PDF
+PASS claim C23 VERIFIED trong claim_evidence_p0.csv
+PASS claim C23 = '5' co trong PDF
+PASS claim C24 VERIFIED trong claim_evidence_p0.csv
+PASS claim C24 = 'yes (9/9)' co trong PDF
+PASS claim C25 VERIFIED trong claim_evidence_p0.csv
+PASS claim C25 = '1.36' co trong PDF
+PASS claim C26 VERIFIED trong claim_evidence_p0.csv
+PASS claim C26 = '1.57' co trong PDF
+PASS claim C27 VERIFIED trong claim_evidence_p0.csv
+PASS claim C27 = '0.14' co trong PDF
+PASS claim C28 VERIFIED trong claim_evidence_p0.csv
+PASS claim C28 = '0.16' co trong PDF
+PASS claim C29 VERIFIED trong claim_evidence_p0.csv
+PASS claim C29 = '7/19' co trong PDF
+PASS claim C11: gia tri '0/4' == tinh lai doc lap '0/4'
+PASS claim C11: vai tro 'PRIMARY' == 'PRIMARY'
+PASS claim C12: gia tri '1/4' == tinh lai doc lap '1/4'
+PASS claim C12: vai tro 'PRIMARY' == 'PRIMARY'
+PASS claim C14: gia tri '0.05–0.70' == tinh lai doc lap '0.05–0.70'
+PASS claim C14: vai tro 'PRIMARY' == 'PRIMARY'
+PASS claim C14b: gia tri '0.00–0.49' == tinh lai doc lap '0.00–0.49'
+PASS claim C14b: vai tro 'PRIMARY' == 'PRIMARY'
+PASS claim C17: gia tri '1/4' == tinh lai doc lap '1/4'
+PASS claim C17: vai tro 'PRIMARY' == 'PRIMARY'
+PASS claim C17h: gia tri '2/5' == tinh lai doc lap '2/5'
+PASS claim C17h: vai tro 'HISTORICAL-SENSITIVITY' == 'HISTORICAL-SENSITIVITY'
+PASS E4 strict P0 dem lai tu e4_reclassified_variants = custom 1/4, default 0/4
+PASS khong dong PRIMARY nao mang gia tri strict lich su (2/5, 0/5): -
+PASS Phu luc D: bang co cot 'Vai trò' trong DOCX
+PASS Phu luc D: 33 dong == 33 claim trong claim_evidence_p0.csv
+PASS Phu luc D C11: o 'Giá trị' = '0/4' (mong doi '0/4')
+PASS Phu luc D C12: o 'Giá trị' = '1/4' (mong doi '1/4')
+PASS Phu luc D C14: o 'Giá trị' = '0.05–0.70' (mong doi '0.05–0.70')
+PASS Phu luc D C14b: o 'Giá trị' = '0.00–0.49' (mong doi '0.00–0.49')
+PASS Phu luc D C17: o 'Giá trị' = '1/4' (mong doi '1/4')
+PASS Phu luc D C17h: o 'Giá trị' = '2/5' (mong doi '2/5')
+PASS Phu luc D C17h: gia tri lich su 2/5 duoc gan nhan LỊCH SỬ (thay 'LỊCH SỬ (độ nhạy)')
+PASS Phu luc D C17h-d: gia tri lich su 0/5 duoc gan nhan LỊCH SỬ (thay 'LỊCH SỬ (độ nhạy)')
+PASS Phu luc D: khong con cach dien dat cu '1/4 = do nhay'
+PASS Phu luc D trich nguon claim_evidence_p0.csv
+PASS E7: thiet ke goc chua 'Tetragon'
+PASS Bang thi nghiem E7: dinh nghia chua 'Tetragon' va trang thai PLANNED (Tetragon, Tracee)
+PASS E8: thiet ke goc chua 'Atomic Red Team'
+PASS Bang thi nghiem E8: dinh nghia chua 'Atomic Red Team' va trang thai PLANNED (Biến thể độc lập (Atomic Red Team, event-generator))
+PASS E9: thiet ke goc chua 'unconfined'
+PASS Bang thi nghiem E9: dinh nghia chua 'unconfined' va trang thai PLANNED (AppArmor default vs unconfined (proxy container))
+PASS Phu luc C trich build_report_p0.sh (ban hien hanh)
+PASS Phu luc C tach ban ghi lich su va kiem tra lai hien tai
+PASS khong dien dat proc.name nhu da bat truc tiep (H-07)
+PASS nhanh proc.name ghi INFERRED
+PASS chuoi repository chuan co trong PDF
+PASS khong co URL repository nao (an danh hay khac) ngoai nguon tham khao
+PASS khong co dau phay thap phan truoc don vi
+PASS cum 'overhead bằng 0' chi xuat hien trong ngu canh phu dinh
+PASS cum 'không có overhead' chi xuat hien trong ngu canh phu dinh
+PASS cum 'chứng minh tổng quát hóa' chi xuat hien trong ngu canh phu dinh
+PASS cum 'đã chứng minh khả năng tổng quát' chi xuat hien trong ngu canh phu dinh
+
+KET QUA: 0 FAIL, 0 WARN, 19 trang, 4 hinh, 17 bang

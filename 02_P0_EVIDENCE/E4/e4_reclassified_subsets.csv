@@ -1,0 +1,13 @@
+subset,ruleset,variants,k_variants,n_variants,wilson95_lo,wilson95_hi,k_runs,n_runs,run_unit_wilson_lo_REFERENCE_ONLY,run_unit_wilson_hi_REFERENCE_ONLY,cp_one_sided95_upper_if_k0,definition
+all_E4_held_out,default,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c E4-T6b,1,7,0.0257,0.5131,5,35,0.0626,0.2938,,all 7 E4 variants (A+B); NOT an unseen claim
+all_E4_held_out,custom,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c E4-T6b,4,7,0.2505,0.8418,20,35,0.4086,0.7202,,all 7 E4 variants (A+B); NOT an unseen claim
+group_A_E4,default,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,1,6,0.0301,0.5635,5,30,0.0734,0.3356,,Group A E4 variants
+group_A_E4,custom,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,3,6,0.1876,0.8124,15,30,0.3315,0.6685,,Group A E4 variants
+related_unseen,default,E4-T1b E4-T6b E4-T5c,1,3,0.0615,0.7923,5,15,0.1518,0.5829,,"E4-T1b, E4-T6b, E4-T5c"
+related_unseen,custom,E4-T1b E4-T6b E4-T5c,3,3,0.4385,1.0000,15,15,0.7961,1.0000,,"E4-T1b, E4-T6b, E4-T5c"
+strict_unseen_P0,default,E4-T3d E4-T2b E4-T4b E4-T5b,0,4,0.0000,0.4899,0,20,0.0000,0.1611,0.527,"PRIMARY: Group A, not syscall-equivalent, not enumerated in any rule draft, no rule added after variant written"
+strict_unseen_P0,custom,E4-T3d E4-T2b E4-T4b E4-T5b,1,4,0.0456,0.6994,5,20,0.1119,0.4687,,"PRIMARY: Group A, not syscall-equivalent, not enumerated in any rule draft, no rule added after variant written"
+strict_unseen_historical,default,E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,0,5,0.0000,0.4345,0,25,0.0000,0.1332,0.451,HISTORICAL (2026-10-22 report): incl. E4-T5c; superseded
+strict_unseen_historical,custom,E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,2,5,0.1176,0.7693,10,25,0.2340,0.5926,,HISTORICAL (2026-10-22 report): incl. E4-T5c; superseded
+independent_external,default,,0,0,nan,nan,0,0,nan,nan,,no externally designed variant executed -> NOT TESTED
+independent_external,custom,,0,0,nan,nan,0,0,nan,nan,,no externally designed variant executed -> NOT TESTED

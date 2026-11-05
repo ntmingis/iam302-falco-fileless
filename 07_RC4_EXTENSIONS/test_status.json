@@ -1,0 +1,119 @@
+{
+  "phase": "RC4 execution (owner-granted 24h sudo 2026-11-04T19:29+07)",
+  "date": "2026-11-04",
+  "executed_experiments": 6,
+  "note": "Experiments executed with time-limited owner-granted sudo; Method A foreground Falco; raw append-only; RC3 unchanged.",
+  "tests": {
+    "DIAG-FIELDS": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "rc4/prereg/P1-A_branch_isolation.md; sudo_steps/10",
+      "runbook": "evidence/dev_t1r_branch_coverage/sudo_commands.md#B",
+      "result": "all 4 branch fields CAPTURED at DEV-T1r memfd execve; default memfd rule suppressed 5/5",
+      "run": "rc4_p1_20261104T123454Z"
+    },
+    "NT-B1": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#C",
+      "result": "proc.name=memfd:runc (prefixed) non-match; default fired 5/5"
+    },
+    "NT-B2": {
+      "status": "INCONCLUSIVE",
+      "n": 5,
+      "evidence": "sudo_commands.md#C",
+      "result": "non-match re-confirmed (pname=containerd-shim); runc-parent positive case not produced (exec -a runc replaced by execve)"
+    },
+    "NT-B4": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#C",
+      "result": "argv0-only (proc.exe) bypass; default suppressed 0/5 -> B4 exploitable via argv0"
+    },
+    "R4-A": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#D",
+      "result": "R4 fired 5/5 (TP), default silent 0/5"
+    },
+    "R4-B": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#D",
+      "result": "R4 silent 0/5; default fired 5/5"
+    },
+    "R4-D": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#D",
+      "result": "R4 silent 0/5 (TN)"
+    },
+    "R4-E": {
+      "status": "VERIFIED",
+      "n": 5,
+      "evidence": "sudo_commands.md#D",
+      "result": "R4 silent 0/5 (TN)"
+    },
+    "R4-C": {
+      "status": "NOT REPRODUCIBLE",
+      "n": 0,
+      "reason": "runc 1.3.3 does not memfd-clone on this VM"
+    },
+    "R4-F": {
+      "status": "BLOCKED",
+      "n": 0,
+      "reason": "empty/unreadable parent path not constructible safely on this VM"
+    },
+    "R4-G": {
+      "status": "BLOCKED",
+      "n": 0,
+      "reason": "real runc at unlisted path not constructible without downgrading/moving system runc"
+    },
+    "E6-dynamic": {
+      "status": "DONE",
+      "n": 5,
+      "reason": "measured (foreground falco, harness unchanged)",
+      "evidence": "rc4/rules/e6_enable_all_sandbox.yaml",
+      "result": "community_direct 0/19 both conditions -> 'no additional direct detection' CONFIRMED; heavy misattrib/FP noise; v1 custom rules still fire stacked"
+    },
+    "E8": {
+      "status": "DONE",
+      "n": 5,
+      "reason": "measured; separate from E4",
+      "result": "independent_external PRIMARY: default 1/8, v1 5/8, defv1v2 5/8; misses T1059.004#9/#11, T1574.006#1; devshm blocked"
+    },
+    "E9": {
+      "status": "DONE",
+      "n": 5,
+      "reason": "measured",
+      "result": "AppArmor unconfined: RC3 subj=docker-default proxy auditd 0/25, PID/cgroup-lineage parser 25/25 -> 25/25 misclassified recovered; Falco unaffected (memfd direct 5/5)"
+    },
+    "E7": {
+      "status": "DONE",
+      "n": 5,
+      "reason": "measured, sequential, one sensor at a time",
+      "result": "Tetragon v1.7.1 base 0/4 covered (no-model=15; needs TracingPolicy); Tracee v0.23.2 7/9 covered (fileless_execution+dropped_executable); ptrace not-comparable; Tracee v0.24.1 BLOCKED (glibc)"
+    }
+  },
+  "integrity": {
+    "rc3_unchanged": true,
+    "pre_baseline": "rc4/baseline/PRE_RC4_SHA256.txt",
+    "post": "rc4/integrity/POST_RC4_SHA256.txt",
+    "baseline_files": 1895
+  },
+  "status_vocabulary": [
+    "VERIFIED",
+    "PARTIAL",
+    "INFERRED",
+    "NOT TESTED",
+    "FAILED",
+    "BLOCKED",
+    "NOT REPRODUCIBLE",
+    "POST-HOC",
+    "HISTORICAL"
+  ],
+  "R4_overall": {
+    "status": "PARTIAL",
+    "reason": "A fires, B/D/E silent, but scenario C (legit runc memfd clone) NOT REPRODUCIBLE on runc 1.3.3; cannot reach 'validated' here"
+  }
+}

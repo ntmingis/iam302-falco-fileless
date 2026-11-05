@@ -1,0 +1,19 @@
+
+=== default run e1_default_20261021_005859_dev  (falco_events.json = 0 bytes) ===
+  0 alerts in the whole run -> DEV-T1r miss 5/5 (default ruleset).
+
+=== custom run e1_custom_20261021_012554_dev  (falco_events.json = 11354 bytes) ===
+  RULE [Notice] LAB Interpreter inline code in container
+     proc.name = None
+     proc.pname = runc
+     proc.exepath = None
+     proc.pexepath = None
+     proc.cmdline = python3 -c import os,sys …
+     container.name = falco-lab-target
+  RULE [Critical] LAB memfd exec masquerading as runc clone
+     proc.name = None
+     proc.pname = containerd-shim
+     proc.exepath = memfd:runc_cloned:/proc/self/exe
+     proc.pexepath = /usr/bin/containerd-shim-runc-v2
+     proc.cmdline = memfd:runc_clon dev_memfd_runcname_r1_1792520761
+     container.name = falco-lab-target

@@ -1,0 +1,5 @@
+branch,deciding_field,rc3_status,rc3_note,rc4_captured_value,rc4_status,rc4_run_id
+B1,proc.name,INFERRED,memfd name is prefixed 'memfd:' so proc.name cannot be bare 'runc',memfd:runc_clon,VERIFIED (captured),rc4_p1_20261104T123454Z
+B2,proc.pname,INFERRED,non-match captured once (pname=containerd-shim); runc-parent case untested,containerd-shim,"INFERRED (captured, consistent)",rc4_p1_20261104T123454Z
+B3,proc.exepath,VERIFIED,DEV-T1r captured proc.exepath=memfd:runc_cloned:/proc/self/exe (RC3),memfd:runc_cloned:/proc/self/exe,"VERIFIED (captured, consistent)",rc4_p1_20261104T123454Z
+B4,proc.exe,INFERRED,argv0 spoofability inferred from field semantics,x,VERIFIED (captured),rc4_p1_20261104T123454Z

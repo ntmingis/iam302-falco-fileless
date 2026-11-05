@@ -1,0 +1,11 @@
+# lab_probe.yaml - CHI dung de thu field khi thiet ke rule E3 (khong phai detector, khong dung trong E1/E2/E3 chinh).
+# In cac field lien quan exec cho moi tien trinh moi trong container lab.
+- rule: LAB Probe exec fields
+  desc: Thu field exec trong container lab de thiet ke rule E3 (chi dung khi probe)
+  condition: spawned_process and container.name startswith "falco-lab-"
+  output: >
+    PROBE type=%evt.type filename=%evt.arg.filename exe=%proc.exe exepath=%proc.exepath name=%proc.name
+    args=%proc.args pcmd=%proc.pcmdline flags=%evt.arg.flags memfd=%proc.is_exe_from_memfd
+    upper=%proc.is_exe_upper_layer preload=%proc.env[LD_PRELOAD] container=%container.name
+  priority: INFORMATIONAL
+  tags: [lab_probe]

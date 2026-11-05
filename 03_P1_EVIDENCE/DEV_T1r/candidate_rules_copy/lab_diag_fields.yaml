@@ -1,0 +1,13 @@
+# lab_diag_fields.yaml - DIAG-FIELDS only. INFORMATIONAL, NOT a detector; not used in E1-E5.
+# Templates EVERY exception-relevant field for an exec in a lab container, so the exact values that decide
+# exception branches B1-B4 are captured directly (not inferred). Load with the default rules via `-r` in a
+# bounded temporary Falco instance; it does not modify the installed sensor.
+# Requires macros spawned_process/container from /etc/falco/falco_rules.yaml (load that with -r too).
+- rule: LAB Diag memfd fields
+  desc: Capture proc.name/proc.exe/proc.exepath/proc.pname/proc.is_exe_from_memfd for exec events in lab containers (DIAG-FIELDS)
+  condition: spawned_process and container.name startswith "falco-lab-"
+  output: >
+    DIAGFIELDS name=%proc.name exe=%proc.exe exepath=%proc.exepath pname=%proc.pname
+    is_exe_from_memfd=%proc.is_exe_from_memfd cmdline=%proc.cmdline container=%container.name
+  priority: INFORMATIONAL
+  tags: [lab_diag, not_a_detector]

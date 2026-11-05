@@ -1,0 +1,9 @@
+variant,technique,group,class_p0,class_note,n,default_state,default_D/M/X,custom_state,custom_D/M/X,payload_ok_default,payload_ok_custom,default_alerts,custom_alerts
+E4-T1b,e4_memfd_execveat,A,related_unseen,execveat (syscall 322) like T1; same memfd mechanism,5,direct,5/0/0,direct,5/0/0,5,5,Fileless execution via memfd_create@falco-lab-target,Fileless execution via memfd_create@falco-lab-target; LAB Interpreter inline code in container@falco-lab-target
+E4-T3d,e4_procfd_argv0,A,strict_unseen,,5,miss,0/0/5,direct,5/0/0,5,5,,LAB Exec via proc fd in container@falco-lab-target; LAB Interpreter inline code in container@falco-lab-target
+E4-T2b,e4_shm_argv0,A,strict_unseen,conceived before v1 freeze (not executed); miss in both,5,miss,0/0/5,miss,0/0/5,5,5,,
+E4-T4b,e4_python_stdin,A,strict_unseen,,5,miss,0/0/5,miss,0/0/5,5,5,,
+E4-T5b,e4_curl_script,A,strict_unseen,,5,miss,0/0/5,miss,0/0/5,5,5,,
+E4-T5c,e4_curl_sh,A,related_unseen,'| sh' literally enumerated in draft0 (2026-10-19) and v1; lineage rule added after variant was written,5,miss,0/0/5,direct,5/0/0,5,5,,LAB Download piped to shell in container@falco-lab-client; LAB Shell reading script from downloader pipe in container@falco-lab-client
+E4-T6b,e4_preload_env,B,related_unseen,Group B; same LD_PRELOAD variable as T6,5,miss,0/0/5,direct,5/0/0,5,5,,LAB Process started with LD_PRELOAD in container@falco-lab-target
+DEV-T1r,dev_memfd_runcname,A,known_in_sample,used to write 'LAB memfd exec masquerading as runc clone' (DEV set),5,miss,0/0/5,direct,5/0/0,5,5,,LAB Interpreter inline code in container@falco-lab-target; LAB memfd exec masquerading as runc clone@falco-lab-target

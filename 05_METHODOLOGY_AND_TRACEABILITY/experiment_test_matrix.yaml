@@ -1,0 +1,150 @@
+# p1_test_matrix.yaml — P1 DEV-T1r / R4 test matrix (single source of truth for the automation pipeline).
+# This is a declarative restatement of evidence/P1_DEV_T1r/test_definitions.csv and the command blocks in
+# evidence/dev_t1r_branch_coverage/sudo_commands.md. It defines tests only; it does NOT execute them.
+# Every behavioural test here is NOT TESTED until the owner runs it manually (level 3, sudo).
+version: 1
+project: "Falco + Auditd fileless execution detection (IAM302, Group 8)"
+privilege_model: "assistant has no sudo; owner runs all privileged commands; raw evidence never overwritten"
+status_vocabulary: [VERIFIED, "VERIFIED FIELD SEMANTICS; DEV-SPECIFIC VALUE INFERRED", INFERRED, INCONCLUSIVE, NOT_TESTED, NOT_REPRODUCIBLE]
+
+exception_under_test:
+  macro: known_memfd_execution_processes
+  source: "/etc/falco/falco_rules.yaml (sha256 30a1a60263ab97650c851011468da03b17fc0096a7cfa3b6686eba5de73b865b = falco-rules-5.2.0); upstream rules PR #268 (commit 4633f29), issue #3444"
+  branches:
+    B1: "proc.name in (runc)"
+    B2: "proc.pname in (runc)"
+    B3: 'proc.exepath = "memfd:runc_cloned:/proc/self/exe"'
+    B4: 'proc.exe = "memfd:runc_cloned:/proc/self/exe"'
+
+field_semantics_falco_0_45_0:
+  proc.name: "task->comm, kernel-limited to 16 chars; for an fd-exec rendered as 'memfd:'+name (never bare 'runc')"
+  proc.exe: "argv[0] (attacker-settable)"
+  proc.exepath: "executable path; for a memfd it is 'memfd:'+attacker-chosen name"
+  proc.pname: "parent's proc.name"
+
+tests:
+  - id: DIAG-FIELDS
+    purpose: "Directly capture proc.name/proc.exe/proc.exepath/proc.pname/proc.is_exe_from_memfd for the live DEV-T1r memfd execve"
+    input_payload: "memfd_create('runc_cloned:/proc/self/exe'); write(/bin/echo); execve(fd,['x',TOK])"
+    expected_behavior: "DIAGFIELDS event: proc.exe=x, proc.name=memfd:runc_clon, proc.exepath=memfd:runc_cloned:/proc/self/exe, proc.pname=containerd-shim, is_exe_from_memfd=true"
+    required_falco_rule: "evidence/P1_DEV_T1r/candidate_rules_copy/lab_diag_fields.yaml (+ default rules for macros)"
+    required_event_fields: [proc.name, proc.exe, proc.exepath, proc.pname, proc.is_exe_from_memfd]
+    auditd_dependency: "none (Falco-only); optional execveat cross-check if an audit rule is loaded"
+    privilege: "sudo (Method A bounded temp falco -M); does not modify installed sensor"
+    safety_preconditions: ["disposable VM + snapshot", "lab up", "temp instance attaches (A6 smoke test)"]
+    pass_criteria: "each of the 5 fields printed CAPTURED with the expected value"
+    fail_criteria: "any expected field ABSENT/EMPTY, or value differs"
+    inconclusive_criteria: "no DIAGFIELDS event observed (payload not seen)"
+    status: NOT_TESTED
+
+  - id: NT-B1
+    purpose: "Can proc.name be forced to bare 'runc' via the memfd name? (branch B1)"
+    input_payload: "memfd_create('runc'); execve(fd,['x',TOK])"
+    expected_behavior: "proc.name=memfd:runc (prefixed) -> B1 does NOT match -> default memfd rule FIRES"
+    required_falco_rule: "default falco_rules.yaml (+ lab_diag_fields.yaml to observe fields)"
+    required_event_fields: [proc.name, proc.exepath, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "default rule fires AND proc.name observed = memfd:runc (B1 unmatchable this way)"
+    fail_criteria: "proc.name observed = runc (B1 reachable)"
+    inconclusive_criteria: "proc.name ABSENT/EMPTY, or cannot attribute suppression to B1 alone"
+    status: NOT_TESTED
+
+  - id: NT-B2
+    purpose: "Can proc.pname be 'runc' at the memfd execve from a live parent exec'd from a file named runc? (branch B2)"
+    input_payload: "parent: exec -a runc /tmp/runc (copy of python3); child: memfd_create('benign_b2'); execve(fd,['x',TOK])"
+    expected_behavior: "if proc.pname=runc at the memfd execve -> B2 matches -> suppressed; else default rule FIRES"
+    required_falco_rule: "default falco_rules.yaml (+ lab_diag_fields.yaml)"
+    required_event_fields: [proc.pname, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up", "/usr/local/bin/python3 present in target (else substitute command -v python3)"]
+    pass_criteria: "proc.pname observed AND branch attribution unambiguous"
+    fail_criteria: "n/a until observed"
+    inconclusive_criteria: "proc.pname ABSENT/EMPTY, or parent exited before the execve (a prior prctl-rename probe did NOT bypass)"
+    status: NOT_TESTED
+
+  - id: NT-B4
+    purpose: "Is proc.exe argv[0] or the memfd name? (branch B4 reachability via argv0 spoof)"
+    input_payload: "memfd_create('not_runc_name'); execve(fd,['memfd:runc_cloned:/proc/self/exe',TOK])"
+    expected_behavior: "proc.exe=argv0=exempt string -> B4 matches -> suppressed (confirms proc.exe=argv0 and B4 spoofable)"
+    required_falco_rule: "default falco_rules.yaml (+ lab_diag_fields.yaml)"
+    required_event_fields: [proc.exe, proc.exepath, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "default rule suppressed AND proc.exe observed = exempt string"
+    fail_criteria: "proc.exe observed = memfd name (B4 not reachable via argv0)"
+    inconclusive_criteria: "proc.exe ABSENT/EMPTY"
+    status: NOT_TESTED
+
+  - id: R4-A
+    purpose: "DEV-T1r with R4 loaded -> true positive"
+    input_payload: "memfd_create('runc_cloned:/proc/self/exe'); execve(fd,['x',TOK])"
+    expected_behavior: "R4 'memfd exec hidden by runc exception' FIRES (parent containerd-shim NOT in lab_runc_paths)"
+    required_falco_rule: "default + rules/custom_rules.yaml + rules/candidate_rules_v2.yaml (R4)"
+    required_event_fields: [proc.exepath, proc.pexepath, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "R4 fires with the R4A token"
+    fail_criteria: "R4 silent"
+    inconclusive_criteria: "no memfd event observed"
+    status: NOT_TESTED
+
+  - id: R4-B
+    purpose: "T1 control (ordinary memfd name) with R4 loaded -> R4 correctly silent"
+    input_payload: "memfd_create('falco_benign_memfd'); execve(fd,['x',TOK])"
+    expected_behavior: "exception not matched -> macro false -> R4 SILENT; default memfd rule FIRES"
+    required_falco_rule: "default + custom v1 + R4"
+    required_event_fields: [proc.exepath, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "default rule fires AND no R4 line for this token"
+    fail_criteria: "R4 fires (false positive)"
+    inconclusive_criteria: "no memfd event observed"
+    status: NOT_TESTED
+
+  - id: R4-C
+    purpose: "Legitimate runc memfd clone (#3444) with R4 loaded -> true negative (key FP question)"
+    input_payload: "real runc >=1.1.15 self-clone via memfd"
+    expected_behavior: "R4 does NOT fire (parent proc.pexepath = runc path IN lab_runc_paths)"
+    required_falco_rule: "default + custom v1 + R4"
+    required_event_fields: [proc.pexepath, proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo"
+    safety_preconditions: ["a runc build/config that memfd-clones"]
+    pass_criteria: "R4 silent on a genuine runc memfd clone"
+    fail_criteria: "R4 fires (false positive on legitimate runc)"
+    inconclusive_criteria: "n/a"
+    status: NOT_REPRODUCIBLE   # runc 1.3.3 on this VM does not memfd-clone (0 in E2 churn)
+
+  - id: R4-D
+    purpose: "Ordinary executable process -> true negative"
+    input_payload: "/bin/echo TOK"
+    expected_behavior: "R4 SILENT (is_exe_from_memfd=false)"
+    required_falco_rule: "default + custom v1 + R4"
+    required_event_fields: [proc.is_exe_from_memfd]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "no R4 line"
+    fail_criteria: "R4 fires"
+    inconclusive_criteria: "no exec event observed"
+    status: NOT_TESTED
+
+  - id: R4-E
+    purpose: "Process with a runc-like executable name, non-memfd -> true negative"
+    input_payload: "cp /bin/echo /tmp/runc; exec -a runc /tmp/runc TOK"
+    expected_behavior: "R4 SILENT (is_exe_from_memfd=false)"
+    required_falco_rule: "default + custom v1 + R4"
+    required_event_fields: [proc.is_exe_from_memfd, proc.name]
+    auditd_dependency: "none"
+    privilege: "sudo (Method A)"
+    safety_preconditions: ["disposable VM + snapshot", "lab up"]
+    pass_criteria: "no R4 line"
+    fail_criteria: "R4 fires"
+    inconclusive_criteria: "no exec event observed"
+    status: NOT_TESTED

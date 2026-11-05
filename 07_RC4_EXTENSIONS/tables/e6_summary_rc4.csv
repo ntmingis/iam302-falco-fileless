@@ -1,0 +1,3 @@
+condition,variants,variants_with_community_direct,community_direct k/n Wilson,community_other_alerts(misattrib/FP),static_prediction
+e6comm (default+incub+sandbox+overlay),19,0,"0/19 Wilson [0.00,0.17]; CP1-sided95 upper 0.15",945,CONFIRMED
+e6commv1 (+v1),19,0,"0/19 Wilson [0.00,0.17]; CP1-sided95 upper 0.15",969,CONFIRMED

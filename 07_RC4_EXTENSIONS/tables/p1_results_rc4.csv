@@ -1,0 +1,9 @@
+test,ruleset,measure,k,n,"k/n Wilson95 (reps, deterministic)",observed fields/notes,status
+DIAG (DEV-T1r),default+DIAG,default memfd rule fired,0,5,"0/5 Wilson [0.00,0.43]; CP1-sided95 upper 0.45",suppressed 5/5; fields captured in 5/5 memfd execs: name=memfd:runc_clon exe=x exepath=memfd:runc_cloned:/proc/self/exe pname=containerd-shim,"B3 match; B1,B2,B4 non-match - all CAPTURED"
+NT-B4 (argv0 spoof),default+DIAG,default memfd rule fired,0,5,"0/5 Wilson [0.00,0.43]; CP1-sided95 upper 0.45","exepath=memfd:not_runc_name (B3 cannot match), exe=memfd:runc_cloned:/proc/self/exe, name=memfd:not_runc_, pname=containerd-shim",B4 matches on argv0 alone -> exception bypass by argv0 spoofing VERIFIED
+NT-B1 (memfd named runc),default+DIAG,default memfd rule fired,5,5,"5/5 Wilson [0.57,1.00]",name=memfd:runc (prefixed),B1 cannot match a memfd name -> non-match VERIFIED
+NT-B2 (runc-named parent),default+DIAG,default memfd rule fired,5,5,"5/5 Wilson [0.57,1.00]","pname=containerd-shim (NOT runc): exec -a runc + python execve replaces the same PID, so no runc parent exists",B2 positive case INCONCLUSIVE (deciding value never produced); B2 non-match re-confirmed
+R4-A DEV-T1r,default+v1+v2,R4 fired,5,5,"5/5 Wilson [0.57,1.00]",default fired 0/5,TP 5/5
+R4-B memfd control,default+v1+v2,R4 fired,0,5,"0/5 Wilson [0.00,0.43]; CP1-sided95 upper 0.45",default fired 5/5,R4 correctly silent
+R4-D ordinary exec,default+v1+v2,R4 fired,0,5,"0/5 Wilson [0.00,0.43]; CP1-sided95 upper 0.45",default fired 0/5,TN
+R4-E runc-named non-memfd,default+v1+v2,R4 fired,0,5,"0/5 Wilson [0.00,0.43]; CP1-sided95 upper 0.45",default fired 0/5,TN

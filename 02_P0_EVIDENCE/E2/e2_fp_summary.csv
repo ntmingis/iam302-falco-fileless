@@ -1,0 +1,21 @@
+ruleset,run_id,workload,windows,units_ok,fp_alerts,fp_windows,fp_window_rate,wilson95_lo,wilson95_hi,rule_of_three_hi,fp_rules,auditd_memfd_ctr,auditd_exec_ctr,phase,duration_s,workload_detail
+default,e2_default_20261021_010013,lifecycle_up,10,10,0,0,0.0,0.0,0.2775,0.3,,0,220,orig_20261021,21.5,run -d nginx (db_mode=none)
+default,e2_default_20261021_010013,http,10,200,0,0,0.0,0.0,0.2775,0.3,,0,200,orig_20261021,29.6,curl nội bộ tới nginx
+default,e2_default_20261021_010013,build,10,10,10,10,1.0,0.7225,1.0,,Drop and execute new binary in container=10,0,50,orig_20261021,21.6,artifact: cp /bin/true → chạy (không có gcc)
+default,e2_default_20261021_010013,python,10,30,0,0,0.0,0.0,0.2775,0.3,,0,50,orig_20261021,21.8,"script file, -m json.tool, -c"
+default,e2_default_20261021_010013,churn,10,500,0,0,0.0,0.0,0.2775,0.3,,0,500,orig_20261021,80.5,docker run --rm ubuntu true
+default,e2_default_20261021_010013,lifecycle_down,10,10,0,0,0.0,0.0,0.2775,0.3,,0,0,orig_20261021,21.5,stop/rm nginx
+custom,e2_custom_20261021_012710,lifecycle_up,10,10,0,0,0.0,0.0,0.2775,0.3,,0,220,orig_20261021,22.4,run -d nginx (db_mode=none)
+custom,e2_custom_20261021_012710,http,10,200,0,0,0.0,0.0,0.2775,0.3,,0,200,orig_20261021,34.9,curl nội bộ tới nginx
+custom,e2_custom_20261021_012710,build,10,10,10,10,1.0,0.7225,1.0,,Drop and execute new binary in container=10,0,50,orig_20261021,22.6,artifact: cp /bin/true → chạy (không có gcc)
+custom,e2_custom_20261021_012710,python,10,30,10,10,1.0,0.7225,1.0,,LAB Interpreter inline code in container=10,0,50,orig_20261021,22.8,"script file, -m json.tool, -c"
+custom,e2_custom_20261021_012710,churn,10,500,0,0,0.0,0.0,0.2775,0.3,,0,500,orig_20261021,123.6,docker run --rm ubuntu true
+custom,e2_custom_20261021_012710,lifecycle_down,10,10,0,0,0.0,0.0,0.2775,0.3,,0,0,orig_20261021,22.1,stop/rm nginx
+default,e2supp_default_20261022_110425,db_lifecycle_up,10,10,0,0,0.0,0.0,0.2775,0.3,,0,30,supp_20261022,22.2,run -d PostgreSQL 14.24 + pg_isready
+default,e2supp_default_20261022_110425,sql_postgres,10,50,0,0,0.0,0.0,0.2775,0.3,,0,100,supp_20261022,24.0,psql: CREATE/INSERT 1000/INDEX/UPDATE/SELECT
+default,e2supp_default_20261022_110425,build_gcc,10,30,30,10,1.0,0.7225,1.0,,Drop and execute new binary in container=30,0,570,supp_20261022,25.1,gcc 11.4 + make: 2 file .c → link → chạy app
+default,e2supp_default_20261022_110425,db_lifecycle_down,10,10,0,0,0.0,0.0,0.2775,0.3,,0,0,supp_20261022,21.4,stop/rm PostgreSQL
+custom,e2supp_custom_20261022_110602,db_lifecycle_up,10,10,0,0,0.0,0.0,0.2775,0.3,,0,30,supp_20261022,22.2,run -d PostgreSQL 14.24 + pg_isready
+custom,e2supp_custom_20261022_110602,sql_postgres,10,50,0,0,0.0,0.0,0.2775,0.3,,0,100,supp_20261022,24.1,psql: CREATE/INSERT 1000/INDEX/UPDATE/SELECT
+custom,e2supp_custom_20261022_110602,build_gcc,10,30,30,10,1.0,0.7225,1.0,,Drop and execute new binary in container=30,0,570,supp_20261022,25.1,gcc 11.4 + make: 2 file .c → link → chạy app
+custom,e2supp_custom_20261022_110602,db_lifecycle_down,10,10,0,0,0.0,0.0,0.2775,0.3,,0,0,supp_20261022,21.4,stop/rm PostgreSQL

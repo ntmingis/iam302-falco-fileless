@@ -1,0 +1,21 @@
+tool,variant,technique,model,variant_state,direct_reps/ok_reps
+tracee,T1,memfd,covered,direct,5/5
+tracee,T2-host,shm_host,covered,direct,5/5
+tracee,T2-ctr,shm_ctr,covered,mixed-nonok,0/0
+tracee,T2-ctr-exec,shm_ctr_exec,covered,direct,5/5
+tracee,T3a,procfd_link,no-model,miss,0/5
+tracee,T3b,procfd_nolink,no-model,miss,0/5
+tracee,T3c,procfd_drop,covered,direct,5/5
+tracee,T4,python,no-model,miss,0/5
+tracee,T5,curl,no-model,miss,0/5
+tracee,T6,preload,covered,miss,0/5
+tracee,T7,ptrace,not-comparable,miss,0/5
+tracee,E4-T1b,e4_memfd_execveat,covered,direct,5/5
+tracee,E4-T3d,e4_procfd_argv0,no-model,miss,0/5
+tracee,E4-T2b,e4_shm_argv0,covered,direct,5/5
+tracee,E4-T4b,e4_python_stdin,no-model,miss,0/5
+tracee,E4-T5b,e4_curl_script,no-model,miss,0/5
+tracee,E4-T5c,e4_curl_sh,no-model,miss,0/5
+tracee,E4-T6b,e4_preload_env,covered,miss,0/5
+tracee,DEV-T1r,dev_memfd_runcname,covered,direct,5/5
+tracee,COVERED variants (headline),,no-model=8,"7/9 Wilson [0.45,0.94]",

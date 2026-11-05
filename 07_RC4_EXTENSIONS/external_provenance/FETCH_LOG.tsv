@@ -1,0 +1,3 @@
+2026-11-04T12:53:51Z	tracee_v0.24.1/dl/checksum-x86_64.v0.24.1.txt	9cd13e95d392f22524c6c6503af2a42cdf5f007e5208b70649bc5fd10cfd0ab8
+2026-11-04T12:53:51Z	tracee_v0.24.1/dl/tracee-x86_64.v0.24.1.tar.gz	8cc56bd8c8dd3efadb0441c84849592affc48a71d3afbe7751a9e2014ef9ec85
+urls: https://github.com/aquasecurity/tracee/releases/download/v0.24.1/{tracee-x86_64.v0.24.1.tar.gz,checksum-x86_64.v0.24.1.txt}

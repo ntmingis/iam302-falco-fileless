@@ -1,0 +1,21 @@
+tech_id,class,family,used_for_rule_design,default_state,custom_first_state,reason
+T1,known,memfd,yes,direct,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T2-host,known,/dev/shm,yes,direct,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T2-ctr,known,/dev/shm,yes,blocked,blocked,kỹ thuật E1 có trong run probe dùng để viết rule
+T2-ctr-exec,known,/dev/shm,yes,direct,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T3a,known,/proc/self/fd,yes,misattrib,misattrib,kỹ thuật E1 có trong run probe dùng để viết rule
+T3b,known,/proc/self/fd,yes,miss,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T3c,known,/proc/self/fd,yes,misattrib,misattrib,kỹ thuật E1 có trong run probe dùng để viết rule
+T4,known,interpreter (argv/stdin),yes,miss,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T5,known,download-pipe,yes,miss,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T6,known,LD_PRELOAD,yes,miss,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+T7,known,ptrace,yes,direct,direct,kỹ thuật E1 có trong run probe dùng để viết rule
+DEV-T1r,known,memfd,yes,miss,direct,đã dùng khi viết rule LAB memfd masquerading (tập DEV)
+E4-T1b,related_unseen,memfd,no,direct,direct,syscall execveat (322) giống T1 trong audit → không phải cơ chế mới; bị loại khỏi tập strict
+E4-T6b,related_unseen,LD_PRELOAD,no,miss,direct,"Nhóm B; cùng biến LD_PRELOAD với T6, chỉ khác cách đặt env"
+E4-T3d,strict_unseen,/proc/self/fd,no,miss,direct,cùng họ /proc/self/fd với T3a–c; khác cách gọi (Python os.execv) và argv0
+E4-T2b,strict_unseen,/dev/shm,no,miss,miss,cùng họ /dev/shm; khác argv0 (exec -a)
+E4-T4b,strict_unseen,interpreter (argv/stdin),no,miss,miss,cùng họ interpreter; code qua stdin
+E4-T5b,strict_unseen,download-pipe,no,miss,miss,cùng họ download-pipe; pipeline nằm trong file script
+E4-T5c,strict_unseen,download-pipe,no,miss,direct,"strict theo định nghĩa gốc, NHƯNG mẫu ""| sh"" có trong custom_rules.draft0.yaml từ 2026-10-19 → đã được dự liệu (phân tích độ nhạy: bỏ → custom 1/4)"
+(none),independent_external,—,no,NOT TESTED,NOT TESTED,không có biến thể do người khác thiết kế (Atomic Red Team / event-generator chưa chạy) → E8 PLANNED

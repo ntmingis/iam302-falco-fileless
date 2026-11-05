@@ -1,0 +1,80 @@
+project=/home/labuser/lab/falco_lab_containers workdir=/tmp/claude-1000/[local AI session store]/81fd77cd-04c0-4b2f-9e49-785b31bf7c6a/scratchpad/vp date=2026-10-29T15:27:37+07:00
+== 1. Parse lai moi run tu results/ va so sanh byte-by-byte voi analysis/
+SAME e1_custom_20261021_003911_pilot/e1_detail.csv
+SAME e1_custom_20261021_003911_pilot/e1_summary.csv
+SAME e1_custom_20261021_004157_e4pilot/e1_detail.csv
+SAME e1_custom_20261021_004157_e4pilot/e1_summary.csv
+SAME e1_custom_20261021_010337/e1_detail.csv
+SAME e1_custom_20261021_010337/e1_summary.csv
+SAME e1_custom_20261021_011709_e4/e1_detail.csv
+SAME e1_custom_20261021_011709_e4/e1_summary.csv
+SAME e1_custom_20261021_012554_dev/e1_detail.csv
+SAME e1_custom_20261021_012554_dev/e1_summary.csv
+SAME e1_custom_20261021_013127_all_t3/e1_detail.csv
+SAME e1_custom_20261021_013127_all_t3/e1_summary.csv
+SAME e1_default_20261020_232621_pilot/e1_detail.csv
+SAME e1_default_20261020_232621_pilot/e1_summary.csv
+SAME e1_default_20261021_001604/e1_detail.csv
+SAME e1_default_20261021_001604/e1_summary.csv
+SAME e1_default_20261021_002936_e4/e1_detail.csv
+SAME e1_default_20261021_002936_e4/e1_summary.csv
+SAME e1_default_20261021_005859_dev/e1_detail.csv
+SAME e1_default_20261021_005859_dev/e1_summary.csv
+SAME e1_probe_20261020_235831_probe/e1_detail.csv
+SAME e1_probe_20261020_235831_probe/e1_summary.csv
+SAME e2_custom_20261021_012710/e2_alerts.csv
+SAME e2_custom_20261021_012710/e2_summary.csv
+SAME e2_default_20261021_003829_pilot/e2_alerts.csv
+SAME e2_default_20261021_003829_pilot/e2_summary.csv
+SAME e2_default_20261021_010013/e2_alerts.csv
+SAME e2_default_20261021_010013/e2_summary.csv
+SAME e2supp_custom_20261022_110602/e2_alerts.csv
+SAME e2supp_custom_20261022_110602/e2_summary.csv
+SAME e2supp_default_20261022_110425/e2_alerts.csv
+SAME e2supp_default_20261022_110425/e2_summary.csv
+DIFF-EXPECTED e5_20261021_013631/e5_overhead_summary.csv (e5_runs.csv tho bi vo cot do locale; xem buoc 3)
+== 2. E3a: dung lai audit rep 2-5 tu journald va so sanh
+SAME e3a/audit.log
+SAME e3a/audit_journal.log
+SAME e3a/recovery_report.txt
+SAME auditrecovered/e1_detail.csv
+SAME auditrecovered/e1_summary.csv
+== 3. E5: chuan hoa doc lap e5_runs.csv roi tong hop lai
+rows=60 fixed=60
+SAME e5_runs_normalized.csv
+SAME e5_overhead_summary.csv (tu ban chuan hoa)
+== 4. Dung lai report/tables/ tu output parse lai (sandbox) va so sanh
+SAME report/tables/SOURCES.txt
+SAME report/tables/e1_summary.csv
+SAME report/tables/e2_fp_summary.csv
+SAME report/tables/e3_comparison.csv
+SAME report/tables/e4_coverage.csv
+SAME report/tables/e4_unseen_summary.csv
+SAME report/tables/e5_overhead_summary.csv
+== 5. Kiem tra cheo doc lap tap alert trong cua so (khong dung code parse_e1)
+e1_default_20261021_001604: falco_events=30 runs=55 rule_set_mismatch=0
+   rules: {'Fileless execution via memfd_create': 5, 'Execution from /dev/shm': 10, 'Drop and execute new binary in container': 10, 'PTRACE attached to process': 5}
+   exit/marker: {'memfd': {('0', True): 5}, 'shm_host': {('0', True): 5}, 'shm_ctr': {('126', False): 5}, 'shm_ctr_exec': {('0', True): 5}, 'procfd_link': {('0', True): 5}, 'procfd_nolink': {('0', True): 5}, 'procfd_drop': {('0', True): 5}, 'python': {('0', True): 5}, 'curl': {('0', True): 5}, 'preload': {('0', True): 5}, 'ptrace': {('0', True): 5}}
+e1_custom_20261021_010337: falco_events=78 runs=55 rule_set_mismatch=0
+   rules: {'LAB Interpreter inline code in container': 15, 'Fileless execution via memfd_create': 5, 'Execution from /dev/shm': 10, 'Drop and execute new binary in container': 10, 'LAB Exec via proc fd in container': 5, 'LAB Shell reading script from downloader pipe in container': 5, 'LAB Download piped to shell in container': 5, 'LAB Process started with LD_PRELOAD in container': 5, 'PTRACE attached to process': 5, 'Read sensitive file untrusted': 13}
+   exit/marker: {'memfd': {('0', True): 5}, 'shm_host': {('0', True): 5}, 'shm_ctr': {('126', False): 5}, 'shm_ctr_exec': {('0', True): 5}, 'procfd_link': {('0', True): 5}, 'procfd_nolink': {('0', True): 5}, 'procfd_drop': {('0', True): 5}, 'python': {('0', True): 5}, 'curl': {('0', True): 5}, 'preload': {('0', True): 5}, 'ptrace': {('0', True): 5}}
+e1_custom_20261021_013127_all_t3: falco_events=35 runs=20 rule_set_mismatch=0
+   rules: {'Drop and execute new binary in container': 10, 'LAB Exec via proc fd in container': 20, 'LAB Interpreter inline code in container': 5}
+   exit/marker: {'procfd_link': {('0', True): 5}, 'procfd_nolink': {('0', True): 5}, 'procfd_drop': {('0', True): 5}, 'e4_procfd_argv0': {('0', True): 5}}
+e1_default_20261021_002936_e4: falco_events=5 runs=35 rule_set_mismatch=0
+   rules: {'Fileless execution via memfd_create': 5}
+   exit/marker: {'e4_memfd_execveat': {('0', True): 5}, 'e4_procfd_argv0': {('0', True): 5}, 'e4_shm_argv0': {('0', True): 5}, 'e4_python_stdin': {('0', True): 5}, 'e4_curl_script': {('0', True): 5}, 'e4_curl_sh': {('0', True): 5}, 'e4_preload_env': {('0', True): 5}}
+e1_custom_20261021_011709_e4: falco_events=35 runs=35 rule_set_mismatch=0
+   rules: {'LAB Interpreter inline code in container': 10, 'Fileless execution via memfd_create': 5, 'LAB Exec via proc fd in container': 5, 'LAB Download piped to shell in container': 5, 'LAB Shell reading script from downloader pipe in container': 5, 'LAB Process started with LD_PRELOAD in container': 5}
+   exit/marker: {'e4_memfd_execveat': {('0', True): 5}, 'e4_procfd_argv0': {('0', True): 5}, 'e4_shm_argv0': {('0', True): 5}, 'e4_python_stdin': {('0', True): 5}, 'e4_curl_script': {('0', True): 5}, 'e4_curl_sh': {('0', True): 5}, 'e4_preload_env': {('0', True): 5}}
+e1_default_20261021_005859_dev: falco_events=0 runs=5 rule_set_mismatch=0
+   rules: {}
+   exit/marker: {'dev_memfd_runcname': {('0', True): 5}}
+e1_custom_20261021_012554_dev: falco_events=10 runs=5 rule_set_mismatch=0
+   rules: {'LAB Interpreter inline code in container': 5, 'LAB memfd exec masquerading as runc clone': 5}
+   exit/marker: {'dev_memfd_runcname': {('0', True): 5}}
+== 6. Unit test cua du an
+Ran 16 tests in 0.194s
+
+OK
+== XONG

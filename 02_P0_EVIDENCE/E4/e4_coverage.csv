@@ -1,0 +1,9 @@
+subset,ruleset,variants,variants_direct,variants_n,runs_direct,runs_n,wilson95_lo_variants,wilson95_hi_variants,definition
+full_unseen,default,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c E4-T6b,1,7,5,35,0.0257,0.5131,"toàn bộ 7 biến thể E4 gốc (A+B, gồm E4-T1b)"
+full_unseen,custom,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c E4-T6b,4,7,20,35,0.2505,0.8418,"toàn bộ 7 biến thể E4 gốc (A+B, gồm E4-T1b)"
+group_A_unseen,default,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,1,6,5,30,0.0301,0.5635,"nhóm A, gồm E4-T1b"
+group_A_unseen,custom,E4-T1b E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,3,6,15,30,0.1876,0.8124,"nhóm A, gồm E4-T1b"
+strict_A_independent,default,E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,0,5,0,25,0.0,0.4345,"nhóm A, bỏ E4-T1b (≡T1) và nhóm B"
+strict_A_independent,custom,E4-T3d E4-T2b E4-T4b E4-T5b E4-T5c,2,5,10,25,0.1176,0.7693,"nhóm A, bỏ E4-T1b (≡T1) và nhóm B"
+group_B_unseen,default,E4-T6b,0,1,0,5,0.0,0.7935,nhóm B (E4-T6b)
+group_B_unseen,custom,E4-T6b,1,1,5,5,0.2065,1.0,nhóm B (E4-T6b)

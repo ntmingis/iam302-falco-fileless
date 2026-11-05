@@ -1,0 +1,21 @@
+tool,variant,technique,model,variant_state,direct_reps/ok_reps
+tetragon,T1,memfd,covered,miss,0/5
+tetragon,T2-host,shm_host,no-model,miss,0/5
+tetragon,T2-ctr,shm_ctr,no-model,mixed-nonok,0/0
+tetragon,T2-ctr-exec,shm_ctr_exec,no-model,miss,0/5
+tetragon,T3a,procfd_link,no-model,miss,0/5
+tetragon,T3b,procfd_nolink,no-model,miss,0/5
+tetragon,T3c,procfd_drop,covered,miss,0/5
+tetragon,T4,python,no-model,miss,0/5
+tetragon,T5,curl,no-model,miss,0/5
+tetragon,T6,preload,no-model,miss,0/5
+tetragon,T7,ptrace,no-model,miss,0/5
+tetragon,E4-T1b,e4_memfd_execveat,covered,miss,0/5
+tetragon,E4-T3d,e4_procfd_argv0,no-model,miss,0/5
+tetragon,E4-T2b,e4_shm_argv0,no-model,miss,0/5
+tetragon,E4-T4b,e4_python_stdin,no-model,miss,0/5
+tetragon,E4-T5b,e4_curl_script,no-model,miss,0/5
+tetragon,E4-T5c,e4_curl_sh,no-model,miss,0/5
+tetragon,E4-T6b,e4_preload_env,no-model,miss,0/5
+tetragon,DEV-T1r,dev_memfd_runcname,covered,miss,0/5
+tetragon,COVERED variants (headline),,no-model=15,"0/4 Wilson [0.00,0.49]; CP1-sided95 upper 0.53",

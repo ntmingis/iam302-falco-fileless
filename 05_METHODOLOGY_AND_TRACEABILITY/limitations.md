@@ -1,0 +1,12 @@
+# Limitations (bản revised 2026-11-02)
+
+1. **Một công cụ, một runtime, một ruleset chính.** Falco 0.45.0 (modern eBPF) với `falco-rules-5.2.0` + 6 custom rule, Docker 28.4.0/runc 1.3.3, một VM Ubuntu 22.04/kernel 6.8. Ruleset cộng đồng (E6) mới được phân tích tĩnh; Tetragon/Tracee (E7) chưa chạy.
+2. **Cỡ mẫu.** 7 họ cơ chế, 19 biến thể; mỗi biến thể 5 lần lặp cho kết quả xác định (5/5 hoặc 0/5). Đơn vị suy luận là biến thể; khoảng Wilson rất rộng (strict custom 2/5: 0.12–0.77). Rule of three (0/10 → ≤ 0.3) là cận trên xấp xỉ do cỡ mẫu nhỏ, không phải ước lượng tỷ lệ thật.
+3. **Tính độc lập của test.** Cùng một người viết rule và biến thể; E4 chỉ được bảo đảm theo thứ tự thời gian (rule đóng băng 00:10:17 trước khi hàm E4 xuất hiện 00:10:29). E4-T5c đã được dự liệu trong draft0. Không có biến thể bên ngoài (E8 PLANNED). Không được hiểu 4/7 hay 2/5 là khả năng tổng quát hóa đã chứng minh.
+4. **Payload vô hại.** Payload chỉ in marker hoặc chạy `/bin/echo`; malware thật có thể khác argv, tên memfd, chuỗi tiến trình, và thường kết hợp nhiều kỹ thuật.
+5. **Auditd không có container ID.** Proxy `subj=docker-default` (AppArmor) chỉ nói "trong một container Docker có profile mặc định"; sẽ hỏng với container `unconfined`/privileged hoặc profile khác (E9 PLANNED, chưa chạy). Rule audit chỉ b64.
+6. **E5.** n = 5, VM dùng chung tài nguyên; mọi dải min–max chồng lấn baseline → chưa đo được overhead runtime có ý nghĩa với phương pháp hiện tại. Không được hiểu là "Falco không có overhead". Số ổn định duy nhất là CPU của chính tác tử (≈ 0.14 ms/exec Falco, ≈ 0.16 ms/exec Auditd).
+7. **Data integrity.** (a) Snapshot audit rep 2–5 của run `e1_custom_20261021_010337` bị mất do log xoay vòng hai lần; đã dựng lại từ bản sao journald (`_TRANSPORT=audit`), đối chiếu 1939/1945 sự kiện trùng khớp trên vùng chồng lấn; dữ liệu E3 Auditd là dữ liệu phục hồi, thiếu trường enriched. (b) Log console của chiến dịch 2026-10-21 không được ghi (tee vào thư mục thuộc root thất bại) và không phục hồi được; tiến trình được chứng minh qua manifest và preflight. (c) CSV E5 gốc vỡ cột do locale; bản chuẩn hoá tái lập được từng byte.
+8. **Trạng thái máy hiện tại khác lúc thí nghiệm.** 2026-11-02: `falcoctl-artifact-follow` active (hash rule vẫn `30a1a602…`). Mọi thí nghiệm mới cần dừng follower và preflight PASS.
+9. **Rule ứng viên v2** được thiết kế từ chính các biến thể E4 bị lọt; chỉ validate cú pháp. Nếu đo trên E4, E4 không còn là tập unseen cho v2.
+10. **Related work** dựa trên tìm kiếm có mục tiêu, không phải tổng quan hệ thống.

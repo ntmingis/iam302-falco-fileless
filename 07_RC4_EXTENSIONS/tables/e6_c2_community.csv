@@ -1,0 +1,96 @@
+technique,rep,token,community_direct_alerts,community_other_alerts,community_direct_rules,community_other_rules
+memfd,1,memfd_r1_1793797947,0,154,,BPF Program Not Profiled@host|Container Run as Root User@falco-lab-client|Container Run as Root User@falco-lab-server|Container Run as Root User@falco-lab-target|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-client|Launch Sensitive Mount Container@falco-lab-server|Launch Sensitive Mount Container@falco-lab-target|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+shm_host,1,shm_host_r1_1793797962,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr,1,shm_ctr_r1_1793797977,0,6,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr_exec,1,shm_ctr_exec_r1_1793797991,0,40,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+procfd_link,1,procfd_link_r1_1793798006,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_nolink,1,procfd_nolink_r1_1793798021,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_drop,1,procfd_drop_r1_1793798036,0,8,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+python,1,python_r1_1793798051,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+curl,1,curl_r1_1793798065,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+preload,1,preload_r1_1793798080,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+ptrace,1,ptrace_r1_1793798095,0,6,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_memfd_execveat,1,e4_memfd_execveat_r1_1793798110,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_procfd_argv0,1,e4_procfd_argv0_r1_1793798125,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_shm_argv0,1,e4_shm_argv0_r1_1793798139,0,40,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+e4_python_stdin,1,e4_python_stdin_r1_1793798154,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_curl_script,1,e4_curl_script_r1_1793798169,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_curl_sh,1,e4_curl_sh_r1_1793798184,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_preload_env,1,e4_preload_env_r1_1793798199,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+dev_memfd_runcname,1,dev_memfd_runcname_r1_1793798213,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+memfd,2,memfd_r2_1793798228,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_host,2,shm_host_r2_1793798243,0,4,,Unexpected inbound connection source@host
+shm_ctr,2,shm_ctr_r2_1793798257,0,5,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr_exec,2,shm_ctr_exec_r2_1793798272,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+procfd_link,2,procfd_link_r2_1793798287,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_nolink,2,procfd_nolink_r2_1793798302,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_drop,2,procfd_drop_r2_1793798316,0,5,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+python,2,python_r2_1793798331,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+curl,2,curl_r2_1793798346,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+preload,2,preload_r2_1793798361,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+ptrace,2,ptrace_r2_1793798375,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_memfd_execveat,2,e4_memfd_execveat_r2_1793798390,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_procfd_argv0,2,e4_procfd_argv0_r2_1793798405,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host|Write below etc@host
+e4_shm_argv0,2,e4_shm_argv0_r2_1793798420,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+e4_python_stdin,2,e4_python_stdin_r2_1793798435,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_curl_script,2,e4_curl_script_r2_1793798450,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_curl_sh,2,e4_curl_sh_r2_1793798464,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_preload_env,2,e4_preload_env_r2_1793798479,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+dev_memfd_runcname,2,dev_memfd_runcname_r2_1793798494,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+memfd,3,memfd_r3_1793798508,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_host,3,shm_host_r3_1793798523,0,4,,Unexpected inbound connection source@host
+shm_ctr,3,shm_ctr_r3_1793798538,0,7,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr_exec,3,shm_ctr_exec_r3_1793798552,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+procfd_link,3,procfd_link_r3_1793798567,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_nolink,3,procfd_nolink_r3_1793798582,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_drop,3,procfd_drop_r3_1793798597,0,5,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+python,3,python_r3_1793798611,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+curl,3,curl_r3_1793798626,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+preload,3,preload_r3_1793798641,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+ptrace,3,ptrace_r3_1793798656,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_memfd_execveat,3,e4_memfd_execveat_r3_1793798671,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_procfd_argv0,3,e4_procfd_argv0_r3_1793798685,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_shm_argv0,3,e4_shm_argv0_r3_1793798700,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+e4_python_stdin,3,e4_python_stdin_r3_1793798715,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_curl_script,3,e4_curl_script_r3_1793798730,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_curl_sh,3,e4_curl_sh_r3_1793798745,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_preload_env,3,e4_preload_env_r3_1793798759,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+dev_memfd_runcname,3,dev_memfd_runcname_r3_1793798774,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+memfd,4,memfd_r4_1793798789,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_host,4,shm_host_r4_1793798803,0,3,,Unexpected inbound connection source@host
+shm_ctr,4,shm_ctr_r4_1793798818,0,6,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr_exec,4,shm_ctr_exec_r4_1793798833,0,39,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+procfd_link,4,procfd_link_r4_1793798848,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_nolink,4,procfd_nolink_r4_1793798862,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_drop,4,procfd_drop_r4_1793798877,0,17,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+python,4,python_r4_1793798892,0,8,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+curl,4,curl_r4_1793798907,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+preload,4,preload_r4_1793798921,0,7,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+ptrace,4,ptrace_r4_1793798936,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_memfd_execveat,4,e4_memfd_execveat_r4_1793798951,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_procfd_argv0,4,e4_procfd_argv0_r4_1793798966,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_shm_argv0,4,e4_shm_argv0_r4_1793798981,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+e4_python_stdin,4,e4_python_stdin_r4_1793798996,0,8,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_curl_script,4,e4_curl_script_r4_1793799010,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_curl_sh,4,e4_curl_sh_r4_1793799025,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_preload_env,4,e4_preload_env_r4_1793799040,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+dev_memfd_runcname,4,dev_memfd_runcname_r4_1793799054,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+memfd,5,memfd_r5_1793799069,0,6,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_host,5,shm_host_r5_1793799084,0,3,,Unexpected inbound connection source@host
+shm_ctr,5,shm_ctr_r5_1793799098,0,5,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+shm_ctr_exec,5,shm_ctr_exec_r5_1793799113,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+procfd_link,5,procfd_link_r5_1793799128,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_nolink,5,procfd_nolink_r5_1793799143,0,6,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+procfd_drop,5,procfd_drop_r5_1793799157,0,6,,Container Drift Detected (open+create)@falco-lab-target|Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+python,5,python_r5_1793799172,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+curl,5,curl_r5_1793799187,0,6,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+preload,5,preload_r5_1793799202,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+ptrace,5,ptrace_r5_1793799216,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_memfd_execveat,5,e4_memfd_execveat_r5_1793799231,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_procfd_argv0,5,e4_procfd_argv0_r5_1793799246,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_shm_argv0,5,e4_shm_argv0_r5_1793799261,0,38,,BPF Program Not Profiled@host|Container Drift Detected (open+create)@falco-lab-shmexec|Container Run as Root User@falco-lab-shmexec|Create Hidden Files or Directories@host|Launch Sensitive Mount Container@falco-lab-shmexec|Unexpected UDP Traffic@host|Unexpected inbound connection source@host
+e4_python_stdin,5,e4_python_stdin_r5_1793799276,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+e4_curl_script,5,e4_curl_script_r5_1793799291,0,6,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_curl_sh,5,e4_curl_sh_r5_1793799305,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@falco-lab-server|Unexpected inbound connection source@host
+e4_preload_env,5,e4_preload_env_r5_1793799320,0,4,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host
+dev_memfd_runcname,5,dev_memfd_runcname_r5_1793799335,0,5,,Create Hidden Files or Directories@host|Unexpected inbound connection source@host

@@ -1,0 +1,104 @@
+# custom_rules.yaml v1 - IAM302 E3 (2026-10-21). Nguon: rules/custom_rules.draft0.yaml + probe
+#   results/e1_probe_20261020_235831_probe (rule_matching=all). Chi dung payload/bien the E1 de thiet ke;
+#   bien the E4 duoc giu rieng, KHONG dung khi viet rule.
+# Moi rule: H = gia thuyet, E = bang chung probe, FP = rui ro FP can do o E2.
+# Tat ca rule yeu cau exec THANH CONG (evt.res = SUCCESS): spawned_process khop ca exec that bai
+#   (probe: python thu /usr/local/sbin/sleep... truoc khi tim thay /usr/bin/sleep).
+
+- list: lab_downloaders
+  items: [curl, wget]
+
+- list: lab_interpreters
+  items: [python, python2, python3, perl, ruby, node, php]
+
+- macro: lab_interpreter_proc
+  condition: (proc.name in (lab_interpreters) or proc.name startswith "python3.")
+
+- macro: lab_exec_ok
+  condition: (spawned_process and evt.res = SUCCESS)
+
+# Allowlist mac dinh rong (dieu kien luon sai). Chi them muc khi E2 chung minh co FP that, va ghi vao bao cao.
+- macro: lab_t3_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t4_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t5_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t6_allowlist
+  condition: (evt.num = 0)
+
+# ---------------------------------------------------------------
+# T3 - exec qua /proc/<pid>/fd/N (hoac /dev/fd/N)
+# H: duong dan truyen cho execve (evt.arg.filename) giu nguyen /proc/self/fd/N bat ke argv0 va
+#    bat ke file goc con link hay da xoa; proc.exepath thi bi resolve nen khong dung duoc.
+# E: probe T3a/b/c deu filename=/proc/self/fd/3; exepath=/usr/bin/echo|/tmp/dropped_elf; exe(argv0) T3a=falco_procfd_test.
+#    memfd (T1) di qua filename=/dev/fd/3 + EXE_FROM_MEMFD -> loai tru (rule default da bat).
+# FP: runtime/launcher exec qua fd (vd. runc clone ban than) - neu xay ra trong container se lo o E2.
+- rule: LAB Exec via proc fd in container
+  desc: T3 - process duoc exec qua /proc/*/fd/N hoac /dev/fd/N trong container (T1620)
+  condition: >
+    lab_exec_ok and container
+    and (evt.arg.filename glob "/proc/*/fd/*" or evt.arg.filename startswith "/dev/fd/")
+    and not proc.is_exe_from_memfd = true
+    and not lab_t3_allowlist
+  output: >
+    Exec via proc fd (filename=%evt.arg.filename exepath=%proc.exepath exe=%proc.exe
+    cmd=%proc.cmdline parent=%proc.pname flags=%evt.arg.flags container=%container.name
+    image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, fileless, T1620]
+
+# ---------------------------------------------------------------
+# T4 - interpreter chay code truyen qua tham so dong lenh
+# H: code inline nam trong argv (-c / -e) cua interpreter.
+# E: probe T4 name=python3 args="-c print(...)".
+# FP: lenh quan tri / healthcheck dung python -c (E2 co workload python -c lanh tinh de do).
+- rule: LAB Interpreter inline code in container
+  desc: T4 - python -c / perl -e / node -e ... trong container (T1059.006)
+  condition: >
+    lab_exec_ok and container and lab_interpreter_proc
+    and (proc.args startswith "-c" or proc.args startswith "-e"
+         or proc.args contains " -c " or proc.args contains " -e ")
+    and not lab_t4_allowlist
+  output: >
+    Inline interpreter code in container (cmd=%proc.cmdline parent=%proc.pname
+    container=%container.name image=%container.image.repository)
+  priority: NOTICE
+  tags: [lab_custom, fileless, T1059.006]
+
+# ---------------------------------------------------------------
+# T5 - tai script va pipe thang vao shell/interpreter
+# H: cmdline cua shell cha chua pipeline "<downloader> ... | <shell>".
+# E: probe T5 curl pcmdline="bash -c set -o pipefail; curl ... | bash ...".
+# Gioi han da biet: chi thay pipeline khi no nam trong argv cua shell cha (bash -c ...);
+#   pipeline go trong shell tuong tac hoac trong file script thi pcmdline khong chua "| bash".
+#   proc.stdin_type khong co trong Falco 0.45 (falco --list) nen khong dung duoc stdin=pipe.
+- rule: LAB Download piped to shell in container
+  desc: T5 - curl/wget co parent cmdline chua pipe vao shell (T1059.004)
+  condition: >
+    lab_exec_ok and container and proc.name in (lab_downloaders)
+    and (proc.pcmdline contains "| bash" or proc.pcmdline contains "|bash"
+         or proc.pcmdline contains "| sh" or proc.pcmdline contains "|sh"
+         or proc.pcmdline contains "| python" or proc.pcmdline contains "|python")
+    and not lab_t5_allowlist
+  output: >
+    Download piped to shell (cmd=%proc.cmdline parent_cmd=%proc.pcmdline
+    container=%container.name image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, fileless, T1059.004]
+
+# ---------------------------------------------------------------
+# T6 - process khoi chay voi LD_PRELOAD
+# H: bien moi truong LD_PRELOAD co mat trong env luc exec.
+# E: probe T6 proc.env[LD_PRELOAD]=/usr/local/lib/libpreload_test.so.
+# FP: image dung LD_PRELOAD hop le (jemalloc/tcmalloc, libfaketime) - workload E2 hien khong co.
+- rule: LAB Process started with LD_PRELOAD in container
+  desc: T6 - bien moi truong LD_PRELOAD khi exec trong container (T1574.006)
+  condition: >
+    lab_exec_ok and container and proc.env contains "LD_PRELOAD="
+    and not lab_t6_allowlist
+  output: >
+    LD_PRELOAD exec in container (preload=%proc.env[LD_PRELOAD] cmd=%proc.cmdline parent=%proc.pname
+    container=%container.name image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, T1574.006]

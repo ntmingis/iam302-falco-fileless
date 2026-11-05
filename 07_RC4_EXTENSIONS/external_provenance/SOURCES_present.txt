@@ -1,0 +1,6 @@
+art_build
+art_d0cc590b
+event-generator_v0.13.0
+tetragon_v1.7.1
+tracee_v0.23.2
+tracee_v0.24.1

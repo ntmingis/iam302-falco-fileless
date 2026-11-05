@@ -1,0 +1,12 @@
+tech_id,group,n_default,default_state,default_D/M/X/B/E,n_custom_first,custom_first_state,custom_first_D/M/X/B/E,custom_all_state,custom_all_D/M/X/B/E,rules_default,rules_custom_first,rules_custom_all,note,auditd_specific_default,auditd_specific_custom
+T1,A,5,direct,5/0/0/0/0,5,direct,5/0/0/0/0,,,Fileless execution via memfd_create@falco-lab-target,Fileless execution via memfd_create@falco-lab-target; LAB Interpreter inline code in container@falco-lab-target,,LAB Interpreter inline code đồng bắn do harness nạp payload bằng python3 -c,5,5
+T2-host,A,5,direct,5/0/0/0/0,5,direct,5/0/0/0/0,,,Execution from /dev/shm@host,Execution from /dev/shm@host,,,5,5
+T2-ctr,A,5,blocked,0/0/0/5/0,5,blocked,0/0/0/5/0,,,,,,custom: exit 126 cả 5/5; rep 2–5 xác nhận success=no từ bản sao journald (ban đầu 4 'error' do snapshot audit mất),0,0
+T2-ctr-exec,A,5,direct,5/0/0/0/0,5,direct,5/0/0/0/0,,,Execution from /dev/shm@falco-lab-shmexec,Execution from /dev/shm@falco-lab-shmexec,,,5,5
+T3a,A,5,misattrib,0/5/0/0/0,5,misattrib,0/5/0/0/0,direct,5/0/0/0/0,Drop and execute new binary in container@falco-lab-target,Drop and execute new binary in container@falco-lab-target,Drop and execute new binary in container@falco-lab-target; LAB Exec via proc fd in container@falco-lab-target,,5,5
+T3b,A,5,miss,0/0/5/0/0,5,direct,5/0/0/0/0,direct,5/0/0/0/0,,LAB Exec via proc fd in container@falco-lab-target,LAB Exec via proc fd in container@falco-lab-target,,5,5
+T3c,A,5,misattrib,0/5/0/0/0,5,misattrib,0/5/0/0/0,direct,5/0/0/0/0,Drop and execute new binary in container@falco-lab-target,Drop and execute new binary in container@falco-lab-target,Drop and execute new binary in container@falco-lab-target; LAB Exec via proc fd in container@falco-lab-target,,5,5
+T4,A,5,miss,0/0/5/0/0,5,direct,5/0/0/0/0,,,,LAB Interpreter inline code in container@falco-lab-target,,,5,5
+T5,A,5,miss,0/0/5/0/0,5,direct,5/0/0/0/0,,,,LAB Download piped to shell in container@falco-lab-client; LAB Shell reading script from downloader pipe in container@falco-lab-client,,,5,5
+T6,B,5,miss,0/0/5/0/0,5,direct,5/0/0/0/0,,,,LAB Process started with LD_PRELOAD in container@falco-lab-target,,,5,5
+T7,B,5,direct,5/0/0/0/0,5,direct,5/0/0/0/0,,,PTRACE attached to process@falco-lab-target,LAB Interpreter inline code in container@falco-lab-target; PTRACE attached to process@falco-lab-target,,LAB Interpreter inline code đồng bắn do harness nạp payload bằng python3 -c,5,5

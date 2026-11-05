@@ -1,0 +1,226 @@
+condition,test_id,rep,container,exit,payload,state,alerts_in_window,rules
+default,T1059.004#2,1,falco-lab-client,0,ok,miss,0,
+default,T1059.004#5,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#6,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#7,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#8,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#9,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#11,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#12,1,falco-lab-client,0,ok,miss,0,
+default,T1059.004#13,1,falco-lab-target,0,ok,miss,0,
+default,T1059.004#14,1,falco-lab-target,0,ok,miss,0,
+default,T1059.006#4,1,falco-lab-target,124,ok,miss,0,
+default,T1574.006#1,1,falco-lab-e8-ldso,0,ok,miss,0,
+default,T1574.006#2,1,falco-lab-target,0,ok,miss,0,
+default,syscall.FilelessExecutionViaMemfdCreate,1,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+default,syscall.ExecutionFromDevShm,1,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+default,T1059.004#2,2,falco-lab-client,0,ok,miss,0,
+default,T1059.004#5,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#6,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#7,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#8,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#9,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#11,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#12,2,falco-lab-client,0,ok,miss,0,
+default,T1059.004#13,2,falco-lab-target,0,ok,miss,0,
+default,T1059.004#14,2,falco-lab-target,0,ok,miss,0,
+default,T1059.006#4,2,falco-lab-target,124,ok,miss,0,
+default,T1574.006#1,2,falco-lab-e8-ldso,0,ok,miss,0,
+default,T1574.006#2,2,falco-lab-target,0,ok,miss,0,
+default,syscall.FilelessExecutionViaMemfdCreate,2,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+default,syscall.ExecutionFromDevShm,2,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+default,T1059.004#2,3,falco-lab-client,0,ok,miss,0,
+default,T1059.004#5,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#6,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#7,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#8,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#9,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#11,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#12,3,falco-lab-client,0,ok,miss,0,
+default,T1059.004#13,3,falco-lab-target,0,ok,miss,0,
+default,T1059.004#14,3,falco-lab-target,0,ok,miss,0,
+default,T1059.006#4,3,falco-lab-target,124,ok,miss,0,
+default,T1574.006#1,3,falco-lab-e8-ldso,0,ok,miss,0,
+default,T1574.006#2,3,falco-lab-target,0,ok,miss,0,
+default,syscall.FilelessExecutionViaMemfdCreate,3,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+default,syscall.ExecutionFromDevShm,3,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+default,T1059.004#2,4,falco-lab-client,0,ok,miss,0,
+default,T1059.004#5,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#6,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#7,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#8,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#9,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#11,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#12,4,falco-lab-client,0,ok,miss,0,
+default,T1059.004#13,4,falco-lab-target,0,ok,miss,0,
+default,T1059.004#14,4,falco-lab-target,0,ok,miss,0,
+default,T1059.006#4,4,falco-lab-target,124,ok,miss,0,
+default,T1574.006#1,4,falco-lab-e8-ldso,0,ok,miss,0,
+default,T1574.006#2,4,falco-lab-target,0,ok,miss,0,
+default,syscall.FilelessExecutionViaMemfdCreate,4,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+default,syscall.ExecutionFromDevShm,4,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+default,T1059.004#2,5,falco-lab-client,0,ok,miss,0,
+default,T1059.004#5,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#6,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#7,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#8,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#9,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#11,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#12,5,falco-lab-client,0,ok,miss,0,
+default,T1059.004#13,5,falco-lab-target,0,ok,miss,0,
+default,T1059.004#14,5,falco-lab-target,0,ok,miss,0,
+default,T1059.006#4,5,falco-lab-target,124,ok,miss,0,
+default,T1574.006#1,5,falco-lab-e8-ldso,0,ok,miss,0,
+default,T1574.006#2,5,falco-lab-target,0,ok,miss,0,
+default,syscall.FilelessExecutionViaMemfdCreate,5,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+default,syscall.ExecutionFromDevShm,5,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+v1,T1059.004#2,1,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#5,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#6,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#7,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#8,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#9,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#11,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#12,1,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#13,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#14,1,falco-lab-target,0,ok,miss,0,
+v1,T1059.006#4,1,falco-lab-target,124,ok,direct,2,LAB Interpreter inline code in container
+v1,T1574.006#1,1,falco-lab-e8-ldso,0,ok,miss,0,
+v1,T1574.006#2,1,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+v1,syscall.FilelessExecutionViaMemfdCreate,1,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+v1,syscall.ExecutionFromDevShm,1,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+v1,T1059.004#2,2,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#5,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#6,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#7,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#8,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#9,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#11,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#12,2,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#13,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#14,2,falco-lab-target,0,ok,miss,0,
+v1,T1059.006#4,2,falco-lab-target,124,ok,direct,2,LAB Interpreter inline code in container
+v1,T1574.006#1,2,falco-lab-e8-ldso,0,ok,miss,0,
+v1,T1574.006#2,2,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+v1,syscall.FilelessExecutionViaMemfdCreate,2,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+v1,syscall.ExecutionFromDevShm,2,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+v1,T1059.004#2,3,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#5,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#6,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#7,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#8,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#9,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#11,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#12,3,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#13,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#14,3,falco-lab-target,0,ok,miss,0,
+v1,T1059.006#4,3,falco-lab-target,124,ok,direct,2,LAB Interpreter inline code in container
+v1,T1574.006#1,3,falco-lab-e8-ldso,0,ok,miss,0,
+v1,T1574.006#2,3,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+v1,syscall.FilelessExecutionViaMemfdCreate,3,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+v1,syscall.ExecutionFromDevShm,3,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+v1,T1059.004#2,4,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#5,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#6,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#7,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#8,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#9,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#11,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#12,4,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#13,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#14,4,falco-lab-target,0,ok,miss,0,
+v1,T1059.006#4,4,falco-lab-target,124,ok,direct,2,LAB Interpreter inline code in container
+v1,T1574.006#1,4,falco-lab-e8-ldso,0,ok,miss,0,
+v1,T1574.006#2,4,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+v1,syscall.FilelessExecutionViaMemfdCreate,4,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+v1,syscall.ExecutionFromDevShm,4,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+v1,T1059.004#2,5,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#5,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#6,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#7,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#8,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#9,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#11,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#12,5,falco-lab-client,0,ok,direct,2,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container
+v1,T1059.004#13,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.004#14,5,falco-lab-target,0,ok,miss,0,
+v1,T1059.006#4,5,falco-lab-target,124,ok,direct,2,LAB Interpreter inline code in container
+v1,T1574.006#1,5,falco-lab-e8-ldso,0,ok,miss,0,
+v1,T1574.006#2,5,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+v1,syscall.FilelessExecutionViaMemfdCreate,5,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+v1,syscall.ExecutionFromDevShm,5,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+defv1v2,T1059.004#2,1,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#5,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#6,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#7,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#8,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#9,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#11,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#12,1,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#13,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#14,1,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.006#4,1,falco-lab-target,124,ok,direct,4,LAB Interpreter inline code in container|LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1574.006#1,1,falco-lab-e8-ldso,0,ok,miss,0,
+defv1v2,T1574.006#2,1,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+defv1v2,syscall.FilelessExecutionViaMemfdCreate,1,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+defv1v2,syscall.ExecutionFromDevShm,1,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+defv1v2,T1059.004#2,2,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#5,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#6,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#7,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#8,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#9,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#11,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#12,2,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#13,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#14,2,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.006#4,2,falco-lab-target,124,ok,direct,4,LAB Interpreter inline code in container|LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1574.006#1,2,falco-lab-e8-ldso,0,ok,miss,0,
+defv1v2,T1574.006#2,2,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+defv1v2,syscall.FilelessExecutionViaMemfdCreate,2,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+defv1v2,syscall.ExecutionFromDevShm,2,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+defv1v2,T1059.004#2,3,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#5,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#6,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#7,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#8,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#9,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#11,3,falco-lab-target,0,ok,direct,1,LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1059.004#12,3,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#13,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#14,3,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.006#4,3,falco-lab-target,124,ok,direct,4,LAB Interpreter inline code in container|LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1574.006#1,3,falco-lab-e8-ldso,0,ok,miss,0,
+defv1v2,T1574.006#2,3,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+defv1v2,syscall.FilelessExecutionViaMemfdCreate,3,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+defv1v2,syscall.ExecutionFromDevShm,3,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+defv1v2,T1059.004#2,4,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#5,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#6,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#7,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#8,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#9,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#11,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#12,4,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#13,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#14,4,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.006#4,4,falco-lab-target,124,ok,direct,4,LAB Interpreter inline code in container|LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1574.006#1,4,falco-lab-e8-ldso,0,ok,miss,0,
+defv1v2,T1574.006#2,4,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+defv1v2,syscall.FilelessExecutionViaMemfdCreate,4,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+defv1v2,syscall.ExecutionFromDevShm,4,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm
+defv1v2,T1059.004#2,5,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#5,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#6,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#7,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#8,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#9,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#11,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#12,5,falco-lab-client,0,ok,direct,3,LAB Download piped to shell in container|LAB Shell reading script from downloader pipe in container|LAB2 Downloader writing to pipe in container
+defv1v2,T1059.004#13,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.004#14,5,falco-lab-target,0,ok,miss,0,
+defv1v2,T1059.006#4,5,falco-lab-target,124,ok,direct,4,LAB Interpreter inline code in container|LAB2 Shell reading script from stdin pipe in container
+defv1v2,T1574.006#1,5,falco-lab-e8-ldso,0,ok,miss,0,
+defv1v2,T1574.006#2,5,falco-lab-target,0,ok,direct,1,LAB Process started with LD_PRELOAD in container
+defv1v2,syscall.FilelessExecutionViaMemfdCreate,5,falco-lab-target,0,ok,direct,2,Drop and execute new binary in container|Fileless execution via memfd_create
+defv1v2,syscall.ExecutionFromDevShm,5,falco-lab-target,0,blocked,blocked,3,Drop and execute new binary in container|Execution from /dev/shm

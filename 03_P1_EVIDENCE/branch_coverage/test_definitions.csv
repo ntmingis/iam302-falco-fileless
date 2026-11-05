@@ -1,0 +1,9 @@
+test_id,purpose,container,memfd_name,argv0,parent,ruleset,expected_default,expected_with_R4,isolates,status
+R4-A,DEV-T1r spoof detected by R4,falco-lab-target,runc_cloned:/proc/self/exe,x,python3/shim,v1+R4,0 alert (suppressed),R4 fires (TP),whole exception vs real parent,NOT TESTED
+R4-B,T1 control not double-flagged by R4,falco-lab-target,falco_benign_memfd,x,python3/shim,v1+R4,default memfd rule fires,R4 silent; default fires,exception not matched,NOT TESTED
+R4-D,ordinary exec no FP,falco-lab-target,(none),/bin/echo,shim,v1+R4,no memfd alert,R4 silent,is_exe_from_memfd=false,NOT TESTED
+R4-E,process named runc no FP,falco-lab-target,(none),runc,shim,v1+R4,no memfd alert,R4 silent,is_exe_from_memfd=false,NOT TESTED
+R4-C,legitimate runc memfd clone (key FP test),n/a,runc_cloned:/proc/self/exe,(runc),runc,v1+R4,suppressed by exception,R4 should stay silent (parent=runc path),real runc clone,NOT TESTED - not reproducible on this VM
+NT-B1,proc.name branch,falco-lab-target,runc,x,python3/shim,default,matches iff comm becomes runc,n/a,proc.name,NOT TESTED
+NT-B2,proc.pname branch,falco-lab-target,benign_b2,x,file named runc (live),default,matches iff pname=runc at memfd execve,n/a,proc.pname,NOT TESTED
+NT-B4,proc.exe branch,falco-lab-target,not_runc_name,memfd:runc_cloned:/proc/self/exe,python3/shim,default,matches iff proc.exe=argv0 string,n/a,proc.exe,NOT TESTED

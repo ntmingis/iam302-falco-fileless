@@ -1,0 +1,5 @@
+scenario,description,expected_design_intent,r4,default_memfd,rc4_status
+A,DEV-T1r,"R4 fires, default silent -> TP",,,"PRESENT (raw JSON found; classify per token using the stdout logs) [totals in window: R4=5, default_memfd=5]"
+B,T1 control,"default fires, R4 silent -> R4 correctly silent",,,"PRESENT (raw JSON found; classify per token using the stdout logs) [totals in window: R4=5, default_memfd=5]"
+D,ordinary exec,both silent -> TN,,,"PRESENT (raw JSON found; classify per token using the stdout logs) [totals in window: R4=5, default_memfd=5]"
+E,runc-like name non-memfd,both silent -> TN,,,"PRESENT (raw JSON found; classify per token using the stdout logs) [totals in window: R4=5, default_memfd=5]"

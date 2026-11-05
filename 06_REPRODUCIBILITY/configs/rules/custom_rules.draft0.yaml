@@ -1,0 +1,115 @@
+# custom_rules.yaml - Nhom 8 IAM302 (ban nhap E3)
+# Kiem field truoc khi dung: falco --list | grep <ten_field>
+
+- list: lab_shells
+  items: [bash, sh, dash, ash, zsh, ksh]
+
+- list: lab_downloaders
+  items: [curl, wget]
+
+- list: lab_interpreters
+  items: [python, python2, python3, perl, ruby, node, php]
+
+- macro: lab_interpreter_proc
+  condition: (proc.name in (lab_interpreters) or proc.name startswith "python3.")
+
+# Allowlist mac dinh rong (dieu kien luon sai).
+# Chi them muc khi E2 chung minh co FP that, va ghi lai trong bao cao.
+- macro: lab_t3_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t4_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t5_allowlist
+  condition: (evt.num = 0)
+- macro: lab_t6_allowlist
+  condition: (evt.num = 0)
+
+# ---------------------------------------------------------------
+# Rule tham do: bat len (enabled: true) khi thiet ke rule,
+# tat lai khi chay E1/E2 de khong lam nhieu so lieu.
+- rule: LAB Probe exec fields
+  desc: In cac field lien quan exec cho container lab, chi dung khi thiet ke rule
+  condition: spawned_process and container.name startswith "falco-lab-"
+  output: >
+    PROBE exe=%proc.exe exepath=%proc.exepath cmd=%proc.cmdline
+    pcmd=%proc.pcmdline memfd=%proc.is_exe_from_memfd
+    upper=%proc.is_exe_upper_layer env=%proc.env container=%container.name
+  priority: INFORMATIONAL
+  enabled: false
+  tags: [lab_custom, lab_probe]
+
+# ---------------------------------------------------------------
+# T3 - thuc thi qua /proc/<pid>/fd/N hoac file da bi unlink
+- rule: LAB Exec via proc fd or deleted file
+  desc: T3 - process duoc exec tu /proc/*/fd/N hoac tu file da bi xoa (T1620)
+  condition: >
+    spawned_process and container
+    and (proc.exepath startswith "/proc/" or proc.exe startswith "/proc/"
+         or proc.exepath endswith "(deleted)")
+    and not proc.is_exe_from_memfd = true
+    and not (proc.exe = "/proc/self/exe" or proc.exepath = "/proc/self/exe")
+    and not lab_t3_allowlist
+  output: >
+    Exec via proc fd or deleted file (exe=%proc.exe exepath=%proc.exepath
+    cmd=%proc.cmdline parent=%proc.pname container=%container.name
+    image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, fileless, T1620]
+
+# ---------------------------------------------------------------
+# T4 - interpreter chay code truyen qua tham so dong lenh
+- rule: LAB Interpreter inline code in container
+  desc: T4 - python -c / perl -e / node -e ... trong container (T1059.006)
+  condition: >
+    spawned_process and container and lab_interpreter_proc
+    and (proc.args startswith "-c" or proc.args startswith "-e"
+         or proc.args contains " -c " or proc.args contains " -e ")
+    and not lab_t4_allowlist
+  output: >
+    Inline interpreter code in container (cmd=%proc.cmdline
+    parent=%proc.pname container=%container.name
+    image=%container.image.repository)
+  priority: NOTICE
+  tags: [lab_custom, fileless, T1059.006]
+
+# ---------------------------------------------------------------
+# T5 - tai script tu mang va pipe thang vao shell/interpreter
+- rule: LAB Download piped to shell in container
+  desc: T5 - curl/wget co parent cmdline chua pipe vao shell (T1059.004)
+  condition: >
+    spawned_process and container and proc.name in (lab_downloaders)
+    and (proc.pcmdline contains "| bash" or proc.pcmdline contains "|bash"
+         or proc.pcmdline contains "| sh" or proc.pcmdline contains "|sh"
+         or proc.pcmdline contains "| python" or proc.pcmdline contains "|python")
+    and not lab_t5_allowlist
+  output: >
+    Download piped to shell (cmd=%proc.cmdline parent_cmd=%proc.pcmdline
+    container=%container.name image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, fileless, T1059.004]
+
+# Rule bo sung cho T5 - CHI bo comment neu `falco --list | grep stdin_type`
+# co ket qua. Gia tri thuc te cua stdin_type (vd PIPE) phai kiem bang probe.
+# - rule: LAB Shell reading script from pipe in container
+#   desc: T5 - shell khong co tham so, doc lenh tu stdin la pipe
+#   condition: >
+#     spawned_process and container and proc.name in (lab_shells)
+#     and proc.stdin_type = "PIPE" and proc.args = ""
+#   output: >
+#     Shell reading script from pipe (cmd=%proc.cmdline parent=%proc.pname
+#     container=%container.name)
+#   priority: NOTICE
+#   tags: [lab_custom, fileless, T1059.004]
+
+# ---------------------------------------------------------------
+# T6 - process khoi chay voi LD_PRELOAD
+- rule: LAB Process started with LD_PRELOAD in container
+  desc: T6 - bien moi truong LD_PRELOAD khi exec trong container (T1574.006)
+  condition: >
+    spawned_process and container and proc.env contains "LD_PRELOAD="
+    and not lab_t6_allowlist
+  output: >
+    LD_PRELOAD exec in container (cmd=%proc.cmdline parent=%proc.pname
+    container=%container.name image=%container.image.repository)
+  priority: WARNING
+  tags: [lab_custom, T1574.006]

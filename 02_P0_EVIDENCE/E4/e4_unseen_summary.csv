@@ -1,0 +1,9 @@
+set,tech_id,group,technique,n,default_state,default_D/M/X/B/E,custom_state,custom_D/M/X/B/E,auditd_specific_default,auditd_specific_custom,rules_custom,subset,independence_note
+UNSEEN,E4-T1b,A,e4_memfd_execveat,5,direct,5/0/0/0/0,direct,5/0/0/0/0,5,5,Fileless execution via memfd_create@falco-lab-target; LAB Interpreter inline code in container@falco-lab-target,equiv_T1,tương đương T1 ở mức syscall (execveat 322); không tính là bằng chứng tổng quát hoá
+UNSEEN,E4-T3d,A,e4_procfd_argv0,5,miss,0/0/5/0/0,direct,5/0/0/0/0,5,5,LAB Exec via proc fd in container@falco-lab-target; LAB Interpreter inline code in container@falco-lab-target,strict,"cùng họ T3 (exec /proc/self/fd/N), argv0 khác; rule custom bắt theo evt.arg.filename"
+UNSEEN,E4-T2b,A,e4_shm_argv0,5,miss,0/0/5/0/0,miss,0/0/5/0/0,5,5,,strict,rule default dùng proc.exe (argv0) → exec -a kworker vượt qua
+UNSEEN,E4-T4b,A,e4_python_stdin,5,miss,0/0/5/0/0,miss,0/0/5/0/0,5,5,,strict,"code qua stdin, argv không có -c → rule dựa argv không thấy"
+UNSEEN,E4-T5b,A,e4_curl_script,5,miss,0/0/5/0/0,miss,0/0/5/0/0,5,5,,strict,pipeline nằm trong file script → pcmdline của cha là 'bash /tmp/dl.sh'
+UNSEEN,E4-T5c,A,e4_curl_sh,5,miss,0/0/5/0/0,direct,5/0/0/0/0,5,5,LAB Download piped to shell in container@falco-lab-client; LAB Shell reading script from downloader pipe in container@falco-lab-client,strict,cùng họ T5 (curl | sh thay vì | bash); rule custom đã liệt kê '| sh'
+UNSEEN,E4-T6b,B,e4_preload_env,5,miss,0/0/5/0/0,direct,5/0/0/0/0,5,5,LAB Process started with LD_PRELOAD in container@falco-lab-target,group_B,"nhóm B (injection-related), không thuộc tập fileless"
+DEV,DEV-T1r,A,dev_memfd_runcname,5,miss,0/0/5/0/0,direct,5/0/0/0/0,5,5,LAB Interpreter inline code in container@falco-lab-target; LAB memfd exec masquerading as runc clone@falco-lab-target,dev,"DEV: dùng khi thiết kế rule, không tính unseen"

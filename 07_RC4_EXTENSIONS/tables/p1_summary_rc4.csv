@@ -1,0 +1,9 @@
+variant,n,memfd_exec_observed,default_memfd_fired,r4_fired,proc.name (distinct),proc.exe (distinct),proc.exepath (distinct),proc.pname (distinct),proc.is_exe_from_memfd (distinct)
+DIAG,5,5,0,0,CAPTURED=memfd:runc_clon,CAPTURED=x,CAPTURED=memfd:runc_cloned:/proc/self/exe,CAPTURED=containerd-shim,CAPTURED=True
+NTB4,5,5,0,0,CAPTURED=memfd:not_runc_,CAPTURED=memfd:runc_cloned:/proc/self/exe,CAPTURED=memfd:not_runc_name,CAPTURED=containerd-shim,CAPTURED=True
+NTB1,5,5,5,0,CAPTURED=memfd:runc,CAPTURED=x,CAPTURED=memfd:runc,CAPTURED=containerd-shim,CAPTURED=True
+NTB2,5,5,5,0,CAPTURED=memfd:benign_b2,CAPTURED=x,CAPTURED=memfd:benign_b2,CAPTURED=containerd-shim,CAPTURED=True
+R4A,5,0,0,5,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT
+R4B,5,0,5,0,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT
+R4D,5,0,0,0,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT
+R4E,5,0,0,0,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT,NO_DIAG_MEMFD_EVENT

@@ -1,0 +1,148 @@
+{
+  "generated_by": "tools/p1_validate.py",
+  "source_of_truth": "raw falco_events.json + raw-derived report/tables/*",
+  "total_checks": 13,
+  "passed": 13,
+  "failed": 0,
+  "overall": "ALL PASS",
+  "checks": [
+    {
+      "check": "E4 strict custom = 1/4 (raw-derived)",
+      "status": "PASS",
+      "detail": "found (1, 4) in e4_reclassified_subsets.csv"
+    },
+    {
+      "check": "B3 is the sole directly-verified matching branch",
+      "status": "PASS",
+      "detail": "B3 proc.exepath CAPTURED = exempt string"
+    },
+    {
+      "check": "B2 non-match directly captured (VERIFIED)",
+      "status": "PASS",
+      "detail": "containerd-shim"
+    },
+    {
+      "check": "B1 NOT directly captured -> INFERRED (not over-graded)",
+      "status": "PASS",
+      "detail": "proc.name state=ABSENT"
+    },
+    {
+      "check": "B4 field-semantics labelled, DEV value inferred (not over-graded)",
+      "status": "PASS",
+      "detail": "proc.exe state=ABSENT"
+    },
+    {
+      "check": "all R4 behavioural scenarios NOT TESTED",
+      "status": "PASS",
+      "detail": "{'DIAG-FIELDS': 'NOT TESTED', 'NT-B1': 'NOT TESTED', 'NT-B2': 'NOT TESTED', 'NT-B4': 'NOT TESTED', 'R4-A': 'NOT TESTED', 'R4-B': 'NOT TESTED', 'R4-D': 'NOT TESTED', 'R4-E': 'NOT TESTED'}"
+    },
+    {
+      "check": "R4-C marked NOT REPRODUCIBLE",
+      "status": "PASS",
+      "detail": "NOT REPRODUCIBLE (runc 1.3.3 does not memfd-clone on this VM)"
+    },
+    {
+      "check": "DIAG/NT-B1/NT-B2/NT-B4 NOT TESTED",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "absent fields classified ABSENT (not 0)",
+      "status": "PASS",
+      "detail": "proc.name/proc.exe absent in DEV raw"
+    },
+    {
+      "check": "run manifest p1auto_20261103T135235Z: id+timestamp+hashes",
+      "status": "PASS",
+      "detail": "run_id=p1auto_20261103T135235Z ts=2026-11-03T13:52:35.676947+00:00 artifacts=3"
+    },
+    {
+      "check": "direct-evidence file exists: results/e1_custom_20261021_012554_dev/falco_events.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "direct-evidence file exists: results/e1_probe_20261020_235831_probe/falco_events.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "direct-evidence file exists: evidence/P1_DEV_T1r/field_semantics_evidence.md",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "metrics_snapshot": {
+    "dev_t1r": {
+      "unit_of_analysis": "variant (1 variant, 5 reps) \u2014 per-run numbers are REFERENCE only",
+      "default": {
+        "detected_variants": 0,
+        "total_variants": 1,
+        "wilson95_variant": [
+          0.0,
+          0.7934567085261071
+        ],
+        "runs_detected_REFERENCE": 0,
+        "total_runs_REFERENCE": 5,
+        "note": "raw falco_events.json is 0 bytes -> 0 alerts in 5/5 (false negative of the default ruleset)",
+        "classification": "false_negative (suppressed by exception branch B3)"
+      },
+      "custom": {
+        "detected_variants": 1,
+        "total_variants": 1,
+        "wilson95_variant": [
+          0.20654329147389294,
+          1.0
+        ],
+        "runs_detected_REFERENCE": 5,
+        "total_runs_REFERENCE": 5,
+        "classification": "direct detection (custom rule LAB memfd exec masquerading as runc clone)"
+      }
+    },
+    "branch_completeness": {
+      "branches": {
+        "B1_proc.name": {
+          "dev_field_state": "ABSENT",
+          "grade": "INFERRED",
+          "note": "proc.name absent from DEV raw; semantics from probe (memfd:+name)"
+        },
+        "B2_proc.pname": {
+          "dev_field_state": "CAPTURED",
+          "grade": "VERIFIED",
+          "value": "containerd-shim",
+          "note": "directly captured; != runc"
+        },
+        "B3_proc.exepath": {
+          "dev_field_state": "CAPTURED",
+          "grade": "VERIFIED",
+          "value": "memfd:runc_cloned:/proc/self/exe",
+          "note": "directly captured; = exempt string (sole directly-verified match)"
+        },
+        "B4_proc.exe": {
+          "dev_field_state": "ABSENT",
+          "grade": "VERIFIED FIELD SEMANTICS; DEV-SPECIFIC VALUE INFERRED",
+          "note": "proc.exe absent from DEV raw; probe proves proc.exe=argv0 (='falco_memfd_py')"
+        }
+      },
+      "directly_captured_fields": 2,
+      "total_branch_fields": 4,
+      "completeness_fraction": 0.5,
+      "sole_directly_verified_matching_branch": "B3"
+    },
+    "e4_strict_custom": [
+      1,
+      4
+    ],
+    "R4": {
+      "DIAG-FIELDS": "NOT TESTED",
+      "NT-B1": "NOT TESTED",
+      "NT-B2": "NOT TESTED",
+      "NT-B4": "NOT TESTED",
+      "R4-A": "NOT TESTED",
+      "R4-B": "NOT TESTED",
+      "R4-D": "NOT TESTED",
+      "R4-E": "NOT TESTED",
+      "R4-C": "NOT REPRODUCIBLE (runc 1.3.3 does not memfd-clone on this VM)"
+    }
+  }
+}

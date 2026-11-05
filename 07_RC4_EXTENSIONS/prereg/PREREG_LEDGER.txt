@@ -1,0 +1,151 @@
+2026-11-04T10:37:11Z BASELINE ac5a8ce75f9dda36db88f52a1120eb7da341094c9b2fd7d23b94c645fa863473  rc4/baseline/PRE_RC4_SHA256.txt
+2026-11-04T10:44:34Z PREREG+CONFIG (registered before any experiment run; no experiment has been executed)
+89cde84ff897985b08638e712f9b98a698ee5616824924d38d6c30998cac6e08  rc4/prereg/P1-A_branch_isolation.md
+eb6c1a8d784e4a7fc7ab372f63a269130be436ef707e95a2edb246a0d5a1e529  rc4/prereg/P1-B_r4_behaviour.md
+d9fc414649797eee72633c341ff941c853a633ef58601f2ebb63bf14c564e1de  rc4/prereg/E6-dynamic_community.md
+bc36b9888953176e4298ea547bc4a614f32df3eed96c2bd8a7c3e679fb6a55c3  rc4/prereg/E8_independent_variants.md
+098d3c41b092a2ca0ea7bbf7892cbdc632b1fda35acc134ad8b70c3382a96ba2  rc4/prereg/E9_auditd_container_proxy.md
+140ccd587319ecef40ebde3511b424ce96d1d92fab11a40cfe263218d461994d  rc4/prereg/E7_second_sensor.md
+a769e2cafdc002dbd7716f4aecbf708631e621a9a98e92b30277f64ce6898790  rc4/rules/e6_enable_all_sandbox.yaml
+2026-11-04T10:44:34Z RULE FREEZE (E8/E7 independence): v1 and v2 hashes below are frozen before any external-variant selection
+8811248cb839ee69494cb43d5331288b72c67341a89ee2f71c15b7abaeb9ed21  rules/custom_rules.yaml
+5cfcfa9df85389fd22acb7018bc19eb0696d95bb3cc9c480ba3e669c98ef5881  rules/candidate_rules_v2.yaml
+2026-11-04T10:49:33Z HANDOFF 44914eb7931a6bb8e8763962235e34094f4c6e47d424fd1bce8368eeda0945c0  rc4/Group8_RC4_Handoff.zip (29 files; no experiment executed)
+2026-11-04T11:30:17Z HANDOFF_v2 e78f27162ff7fed4e7b8d8160f1f45d84d9a03fe27d0a5bd39448d6485a167b8  rc4/Group8_RC4_Handoff_v2.zip (33 files; Part A not done, no experiment executed; step scripts prepared)
+2026-11-04T12:26:59Z STEP0 (prompt 4; read-only checks, no privileged command run by assistant)
+  0a report input: NOT FOUND (find ~ /tmp /mnt/hgfs -> 0 hits; /mnt/hgfs empty; hgfs mount NOT attempted - needs sudo, autonomy gate not satisfied). rc4/report_input/ empty; no copy made.
+  0b privilege: sudo -n true rc=0; /etc/sudoers.d/90-claude-rc4 present (29 B, mtime 2026-11-04 19:22 +07). MISSING: rc4/owner_confirmations/full_autonomy_granted.txt; no 24h systemd-run revoke timer visible in 'systemctl list-timers --all'. Assistant has NOT used sudo; campaign HALTED pending owner.
+  0c snapshot_pre-RC4.txt: "VMware snapshot pre-RC4 (on M:) taken 2026-11-04T19:21:31+07:00 by owner"
+  0c RC3 SHA256SUMS.txt (sha256 8d7ab5d3124ffafea8d2b284622f32e811bc274c34e04eb1902368f27f4ec14b): 149/149 OK
+  0c PRE_RC4_SHA256.txt (sha256 ac5a8ce75f9dda36db88f52a1120eb7da341094c9b2fd7d23b94c645fa863473, = BASELINE entry above): 1895/1895 OK -> host-disk move changed no listed guest file
+2026-11-04T12:30:00Z STEP0b OWNER GRANT RECORDED (by owner, not assistant)
+  full_autonomy_granted.txt sha256 7b3688622d8a49a9dbd0f12e0e346fde25079470d6d91ca18fd4b8ebcb61d734: full autonomy granted 2026-11-04T19:29:40+07:00 by owner, expires in 24h
+  revoke timer run-r518c74d2e5ed4fe0979521190b068759.timer fires Thu 2026-11-05 19:29:40 +07 (rm -f /etc/sudoers.d/90-claude-rc4)
+2026-11-04T12:30:23Z OWNER OVERRIDE: RC4 grant overrides CLAUDE.md no-sudo rule until timer or cleanup (owner reply 'continue'). CLAUDE.md exception line added; pre-override copy rc4/logs/CLAUDE.md.pre_override sha256 5697be88303bbfd59a82bb9e09b6e79f2f29238242a9fe2ccd2123cd0b457332
+2026-11-04T12:30:38Z STEP0a REPORT INPUT copied BY ASSISTANT (cp, not mv) from host share (mounted ro via vmhgfs-fuse, owner-approved) /mnt/hgfs/Desktop/Group8_IAM302_FINAL_REVIEW_2026-11-04/01_FINAL_SUBMISSION/Final_Report/FINAL_REPORT_REVISED.docx -> rc4/report_input/FINAL_REPORT_REVISED.docx; d320c36b8cb5f4968b66753ab28689444e149ed062de8aec21b3d6d6d8ff6ca5  rc4/report_input/FINAL_REPORT_REVISED.docx; written rc4/owner_confirmations/report_input.sha256 (the one permitted owner_confirmations write)
+2026-11-04T12:34:09Z PRE-RUN REGISTRATION P1 (execution plan + tools; before any P1 run)
+  a924a6a037d92e3b0956a8cec7858343b183acbeeb20573ab614ff21f1ad5035  rc4/runs/p1_run.sh
+  6db600ecad7e10710a1dcef430431dc0b2560ecdf4c8ec2bdd3b6add62cc09f4  rc4/tools/score_p1_tokens.py
+  f960120bf7eb5342e4ec10358bcafcc3da27e72e23dc8d097b4cae56675667cb  rc4/tools/score_p1.py
+  22a66f72239cea435cc152697c52777aecd8bed3de9357d5b1ed0de225bd5fa3  rc4/tools/make_restore_point.sh
+  44515341d938144bc1f49ac8db0012b507e8d422a155fe12198c55e5965f5e99  evidence/dev_t1r_branch_coverage/sudo_commands.md
+  1143050526aa188e6df312517130fed6bd6f5635badb4d48e23bb2c784182512  evidence/P1_DEV_T1r/candidate_rules_copy/lab_diag_fields.yaml
+  DEVIATION: tokens suffixed _r<i>; 1 s gap; C/D window -M 150 (runbook 120) to fit n=5; per-token scorer added (attribution by token substring)
+2026-11-04T12:34:09Z RESTORE POINT P1 /home/labuser/lab/falco_lab_containers/rc4/restore_points/P1_20261104T123409Z
+2026-11-04T12:34:54Z P1 ATTEMPT 1 FAILED run rc4_p1_20261104T123416Z: verbatim 'Error: Option ‘modern-bpf’ does not exist' (runbook flag invalid on Falco 0.45). No payload executed (no *_payload_stdout files). Raw dir kept.
+  DEVIATION D-P1-1: '--modern-bpf' -> '-o engine.kind=modern_ebpf' (same engine as /etc/falco config); smoke/start checks now fail-closed on exit!=0. Plan re-registered:
+  64501ccaa67ef8ccdca893cacb6500e49811d0b9b165e9b23252a413c106269e  rc4/runs/p1_run.sh
+  a924a6a037d92e3b0956a8cec7858343b183acbeeb20573ab614ff21f1ad5035  rc4/runs/p1_run.attempt1.sh
+2026-11-04T12:42:21Z RESTORE TOOL FIX D-RP-1: auditd RefuseManualStop=yes -> never restart auditd; restart falco only if /etc/falco changed or inactive. P1 restore.sh replaced by new template (old kept restore.v1.sh) sha256 66a2296f853a7f1884f9f56d3ff163ef111976ed6b0899459ee2b10913467fd8; generator sha256 cf699a0f6d280d5294ea14510db2bc034cf923c7e96d523ff8b32a074c4c2e5b
+2026-11-04T12:42:40Z RESTORE P1 -> RESTORE OK 2026-11-04T19:42:40+07:00
+2026-11-04T12:44:55Z PRE-RUN REGISTRATION E6-dynamic (no E6 run yet)
+  ce2e34cedae1a0960aea752aba697ca50a300ecdad362ce9716cd8c8e592fb45  rc4/prereg/E6-dynamic_exec_plan_RC4.md
+  b94a86e4ce52eb8cbd98e9b6bb094837124d0c70d1f9d4fae8d3ce918fe59d33  rc4/runs/fg_falco_harness.sh
+  d2d2c9e5c2d6045f1374324a836d4f83d1f0456ce059848378f377991f8cdfbc  rc4/tools/parse_e6.py
+  b46f159a9d67260038c9644ab9dde8b35a24857a6ed09df8cfa96a4bee782e8b  run_e1.sh
+  5fffbdee093a760daeda26fdbb57a1859903336f9a9ceea7b8c90fbefa1ffce1  run_e2.sh
+  44151db22c540a87d8eed9d80ff7534577502b4fdbd479f597275ceb86a6cda5  parse_e1.py
+  58e91f027edc904d749505e4b6d8f288d39a7d8161604595cb4aab55f0f98beb  parse_e2.py
+  47bf87041e2f39ca336e7acf1ae4e6183771a92e81031f367d01f2b49cabe1ac  experiments/E6_community_ruleset/upstream/falco-incubating-rules-6.0.1.yaml
+  f05ad34f07c43930932ea6dd84c08a37bc8e5ba9f88901ca091ff1b52b3f33d3  experiments/E6_community_ruleset/upstream/falco-sandbox-rules-6.2.0.yaml
+  a769e2cafdc002dbd7716f4aecbf708631e621a9a98e92b30277f64ce6898790  rc4/rules/e6_enable_all_sandbox.yaml
+  8811248cb839ee69494cb43d5331288b72c67341a89ee2f71c15b7abaeb9ed21  rules/custom_rules.yaml
+2026-11-04T12:44:56Z RESTORE POINT E6 /home/labuser/lab/falco_lab_containers/rc4/restore_points/E6_20261104T124455Z
+2026-11-04T12:47:14Z PRE-RUN REGISTRATION E9 (no E9 run yet)
+  97470c2a0962dced828bd4b6ac2f815972a27c8a9ea9d640b07b3752efb21a86  rc4/prereg/E9_exec_plan_RC4.md
+  16c04de207ddf4008a95017b8f028faea8115dceca45c967277c1237be914113  rc4/runs/e9_run.sh
+  dfac7949745171232268f675d2e842f2e7fb800a045c746507242b16304074e4  rc4/runs/e9_proc_sampler.sh
+  011ff611debca4760d32e76d5b330028e3aae6b1e7f5c61e72f38fa231d91225  rc4/tools/parse_e9_altscope.py
+  b46f159a9d67260038c9644ab9dde8b35a24857a6ed09df8cfa96a4bee782e8b  rc4/e9_harness/run_e1.sh
+  85584964f8dbad8ed41dd1898611373bd07956b08c8b59127b7b9f4a9be956d1  rc4/e9_harness/labctl.sh
+  aa7ef51ead6fbd64d9217f0fb5de916f4dfbd8b1dfd3b4492539e27ba54238f2  labctl.sh
+2026-11-04T12:47:21Z E8 RULE FREEZE RE-AFFIRMED before any fetch/selection (must equal 10:44:34Z entry)
+  8811248cb839ee69494cb43d5331288b72c67341a89ee2f71c15b7abaeb9ed21  rules/custom_rules.yaml
+  5cfcfa9df85389fd22acb7018bc19eb0696d95bb3cc9c480ba3e669c98ef5881  rules/candidate_rules_v2.yaml
+2026-11-04T12:51:53Z PRE-RUN REGISTRATION E8 (selection written before any E8 run)
+  ee1ad8d816b61e753c38fd6fb76aa02c37eae5c08732946c63cfa74211f1bd04  rc4/prereg/E8_exec_plan_RC4.md
+  af7f21da20541b5d708ed655d90688bcd6922200a00fe38c46b9bce0756eba18  rc4/tables/e8_selection.csv
+  d4d5f705bf5527d143e3ecfdf9bcee0533f5e78201501a77634b90ee2f4f823c  rc4/runs/e8_run.sh
+  4743f438f29a06954bb8e9ecfc6e2691ff9cb6ac10711879a70ecf0ec6542fcb  rc4/tools/parse_e8.py
+  e26fe237375dc8c80a7a4a243eb628affb011ed857648ec3656d9c3034bd1d02  rc4/tools/rc4stats.py
+  2a26f69f3fdcf6f3f2135d4405a184cfd365ed662c42f71fd4a1aa978b018021  rc4/external/art_d0cc590b/T1059.004.yaml
+  ae2fe08080848ef106042807d4e9afb50064a4ab442807962156fa6cfc82275d  rc4/external/art_d0cc590b/T1059.006.yaml
+  a01e405b05065f2b5182875c0d45c45004bad5638538e41834e1d8000155d902  rc4/external/art_d0cc590b/T1574.006.yaml
+  7a57f1d6895942ebfd24dbefe2045d485d4022504b243573994a1a71723d0f02  rc4/external/art_d0cc590b/src/T1574.006.c
+  886c7eaa1f7fdc9ba9782ab916be242dc12d42be638ddfbf94c2ac3ddd250dd3  rc4/external/art_d0cc590b/src/echo-art-fish.sh
+  d95c1b3231496cf900e0f1bf28bb74054477075f86398ba72089f124f491e08a  rc4/external/art_d0cc590b/src/pipe-to-shell.sh
+  298a70547e476b725fafd658a74bfb2bfc5516fb6b56792addb34ec79b1a2c27  rc4/external/art_build/T1574006.so
+  6009e345390b064b59e6c69f3876fd4a199572104fcad38940369fb3866995b7  rc4/external/event-generator_v0.13.0/bin/event-generator
+  8261db16d12d49f9a4638f0feac67499eeeb9f951cc2292e46c10ae9690cd940  rc4/external/event-generator_v0.13.0/dl/checksums.txt
+  80dcf3c6eac2ec84300872dafeb76c49d9a11cbb16a9ea3ba3f9bb7362a5cedf  rc4/external/event-generator_v0.13.0/dl/event-generator_0.13.0_linux_amd64.tar.gz
+  b39eade5f4f6d275d9e62d8c54b6a1cfb069352c326256dd022f5e53f0fd3ac9  rc4/external/event-generator_v0.13.0/dl/source_v0.13.0.tar.gz
+2026-11-04T12:57:38Z PRE-RUN REGISTRATION E7 (no E7 run yet)
+  5e5d6be2e352cb1bb86c63f768d3611b60fb3ec428d027619e168a8581aa337c  rc4/prereg/E7_exec_plan_RC4.md
+  9a6988b539e666619d93c1f2c460c1082c5bf919b2594b88a600bd37efec6332  rc4/runs/e7_run.sh
+  ff1ce2db26036ef8bbfe4952aa4c1c33fd7ea1516d9d1167e552406198fcb41b  rc4/tools/parse_e7.py
+  2f36a7bbb2b3d77a011383a01c8f804fe7761d934a76ff2fdf99ebad6f3e89ae  rc4/external/tetragon_v1.7.1/dl/tetragon-v1.7.1-amd64.tar.gz
+  c18c60dcb6d19d97f352b0d8210f01a8cf4ad64937fc7dea6d40572568d8de3e  rc4/external/tetragon_v1.7.1/dl/tetragon-v1.7.1-amd64.tar.gz.sha256sum
+  e5eca11f1cf19ae63656f35052fecab0b6439a8129e831b1b311753ab8b60ff3  rc4/external/tracee_v0.23.2/dl/checksum-x86_64.v0.23.2.txt
+  6a3f2cdc5023bc833d261cf4e3d84ff258b24a8b313f8f20438f0b04842060fa  rc4/external/tracee_v0.23.2/dl/tracee-x86_64.v0.23.2.tar.gz
+  9cd13e95d392f22524c6c6503af2a42cdf5f007e5208b70649bc5fd10cfd0ab8  rc4/external/tracee_v0.24.1/dl/checksum-x86_64.v0.24.1.txt
+  8cc56bd8c8dd3efadb0441c84849592affc48a71d3afbe7751a9e2014ef9ec85  rc4/external/tracee_v0.24.1/dl/tracee-x86_64.v0.24.1.tar.gz
+2026-11-04T12:59:15Z P1 RESULT (run rc4_p1_20261104T123454Z; scored score_p1_tokens.py + score_p1.py v2)
+  DIAG 5/5 memfd execs captured: name=memfd:runc_clon exe=x exepath=memfd:runc_cloned:/proc/self/exe pname=containerd-shim is_exe_from_memfd=True; default memfd rule suppressed 5/5
+  B1 proc.name INFERRED->VERIFIED(captured non-match); B4 proc.exe INFERRED->VERIFIED(captured; NT-B4 argv0-only bypass fired default 0/5 -> B4 exploitable by argv0); B3 VERIFIED(consistent); B2 non-match re-confirmed(pname=containerd-shim), B2 positive-case INCONCLUSIVE
+  NT-B1 default fired 5/5 (memfd name prefixed memfd:runc); NT-B2 default fired 5/5 (no runc parent produced)
+  R4: A TP 5/5 (default silent 0/5), B R4 silent 0/5(default 5/5), D TN 0/5, E TN 0/5; R4 = PARTIAL (scenario C not reproducible)
+  SCORER FIX D-P1-2: score_p1.py v1 read non-memfd parent events -> wrong field values; v2 filters to the DIAG memfd execve (is_exe_from_memfd=true). v1 output kept branch_matrix_rc4_scorerv1_DEFECTIVE.csv
+  b45949034440845ccd1ca0ca9cd500a073b38049f965a06d9bfcc6dc253f009f  rc4/tables/p1_results_rc4.csv
+  54057c552b9e34eff75bba0b16ed7d20c040940ee9feee8ad69b1574fd282f18  rc4/tables/branch_matrix_rc4.csv
+  22a1553156fcdbf0456970a17c7f86afdb000b1c0355a078e38ba03f069c4b24  rc4/tables/p1_summary_rc4.csv
+  17dc491958b3a3d4dd62a925b285e15cf5ab18fd5ae6b282b5b5043e79e230e8  evidence/P1_DEV_T1r/raw_logs/rc4_p1_20261104T123454Z/SHA256SUMS.txt
+2026-11-04T13:40:14Z E6 RESULT (runs e1_default_20261104_194512_rc4_e6comm + e2_...200837; e1_...201220_rc4_e6commv1 + e2_...203543)
+  community_direct = 0/19 BOTH conditions (parse_e6 + independent recount_e6 agree) -> static 'no additional direct detection' CONFIRMED
+  community misattrib/FP noise high (c1 945 / c2 969 community_other alerts in technique windows; E2 all workloads fp_window_rate=1.0, headline FP rule 'Create Hidden Files or Directories')
+  v1 custom rules still fire stacked with community (c2 DEV-T1r 'LAB memfd exec masquerading' direct 5/5)
+  E6 restore point rc4/restore_points/E6_20261104T124455Z restore.sh -> RESTORE OK; /etc/falco/falco_rules.yaml = RC3 30a1a602
+  1d2792ec74dc26d1b2206a69159f55a88d9ea49ca3ace1326cd0a6638a6f679c  rc4/tables/e6_summary_rc4.csv
+  59fc27000928270d45ebc5acbcdbfed8526bcf48f343941e2ff40fceb1a1eec7  rc4/tables/e6_c1_community.csv
+  106fd5902d2e15883532495ce93739dcabbf428027cba08184caab781760c2cc  rc4/tables/e6_c2_community.csv
+2026-11-04T13:40:50Z RESTORE POINT E9 /home/labuser/lab/falco_lab_containers/rc4/restore_points/E9_20261104T134050Z
+2026-11-04T13:55:04Z E9 RESULT (default=results/e1_default_20261104_204050_rc4_e9_apparmor_default; unconfined=rc4/e9_harness/results/e1_default_20261104_204658_rc4_e9_apparmor_unconfined)
+  Primary: AppArmor unconfined -> RC3 proxy auditd recall 0/25 (subj=unconfined breaks subj=docker-default proxy); PID/cgroup-lineage parser 25/25 -> 25/25 windows misclassified by proxy, recovered by altscope
+  docker-default config: both parsers AGREE 10/25 (rest limited by audit-log slice capture: default slice 22041 vs unconfined 59854 lines, lost=0) -> altscope does not over-recover under normal profile
+  Containers during unconfined phase: apparmor=unconfined priv=false caps=[] binds=[]; restored to docker-default; falco-lab Internal=true throughout
+  Falco detection unchanged by apparmor (container plugin): memfd direct 5/5 both configs
+  9137e8555d073b8abca0444440d19fda3ae7558e4b67589785d6882d3e181ba4  rc4/tables/e9_summary_rc4.csv
+  59639f10b708f7662c8e3ad5301bedb4f94f833a430f10206630453663d09e72  rc4/tables/e9_unconfined.csv
+  7538e26fe15287660c5f058e12d7ac60b1ab365ab97a575cdcdc4700ad18e942  rc4/tables/e9_default.csv
+2026-11-04T13:57:40Z E9 C4 RECOUNT: recount_e9.py v1 under-counted ATOK techniques (plaintext token check missed hex-encoded argv); v2 decodes EXECVE hex args -> now MATCHES scorer exactly: default rc3=10 alt=10, unconfined rc3=0 alt=25. Scorer was correct throughout.
+2026-11-04T13:57:52Z RESTORE POINT E8 /home/labuser/lab/falco_lab_containers/rc4/restore_points/E8_20261104T135752Z
+2026-11-04T14:26:01Z E8 RESULT (class=independent_external; runs e8_default_20261104T135752Z, e8_v1_20261104T140643Z, e8_defv1v2_20261104T141539Z; ART d0cc590b + event-generator v0.13.0)
+  PRIMARY direct k/n: default 1/8 [0.02,0.47]; v1 5/8 [0.31,0.86]; defv1v2 5/8 [0.31,0.86] (independent recount_e8.py agrees exactly)
+  v1 catches: pipe-to-shell T1059.004#2,#12 (LAB Download piped/Shell reading), interpreter T1059.006#4 (LAB Interpreter inline), ld-preload T1574.006#2 (LAB LD_PRELOAD), memfd (stable)
+  v1 MISSES (narrow generality): T1059.004#9 base64|bash 0/5, T1059.004#11 env|sh 0/5 (defv1v2 1/5 via LAB2 stdin rule, flaky->mixed), T1574.006#1 /etc/ld.so.preload 0/5
+  devshm (event-generator ExecutionFromDevShm) = blocked all conds (Docker /dev/shm noexec); NOT a Falco miss
+  SEPARATE from E4; never merged. v1=8811248c v2=5cfcfa9d UNCHANGED (freeze held)
+  7bd0cd93594b4fad66c42dda786cf05a12235a4ee76f9ffef715bcab3b2f94d2  rc4/tables/e8_variant_summary_rc4.csv
+  7a090d6632d30e77c30c004bf703aa5d4cb0917f0de41fedd0893afd525f3a10  rc4/tables/e8_results_rc4.csv
+  8811248cb839ee69494cb43d5331288b72c67341a89ee2f71c15b7abaeb9ed21  rules/custom_rules.yaml
+  5cfcfa9df85389fd22acb7018bc19eb0696d95bb3cc9c480ba3e669c98ef5881  rules/candidate_rules_v2.yaml
+2026-11-04T14:26:33Z RESTORE POINT E7-tetragon /home/labuser/lab/falco_lab_containers/rc4/restore_points/E7tetragon_20261104T142633Z
+2026-11-04T14:51:34Z E7-tetragon restore -> RESTORE OK 2026-11-04T21:51:34+07:00; result direct 0/18 (base sensor no binary_properties; TracingPolicy not loaded)
+2026-11-04T14:51:35Z RESTORE POINT E7-tracee /home/labuser/lab/falco_lab_containers/rc4/restore_points/E7tracee_20261104T145134Z
+2026-11-04T14:52:44Z DEVIATION D-E7-3: Tracee v0.23.2 has no --containers flag (enrichment on by default; --no-containers disables). Removed --containers. First Tracee start aborted on the flag (no state change: falco restarted active, no sensor installed); retrying once. attempt1 script kept rc4/runs/e7_run.attempt1.sh
+2026-11-04T15:18:44Z E7 RESULT (Tetragon v1.7.1 run e1_default_...212706_rc4_e7_tetragon; Tracee v0.23.2 run e1_default_...215251... rc4_e7_tracee)
+  Tetragon base sensor (no TracingPolicy): COVERED direct 0/4 (no binary_properties emitted; needs a policy) + no-model=15 -> observation-only, model difference not a miss
+  Tracee v0.23.2 signatures: COVERED direct 7/9 Wilson [0.45,0.94] (fileless_execution: memfd/shm/dev-memfd; dropped_executable: procfd_drop); preload MISS (ld_preload sig keys on /etc/ld.so.preload not LD_PRELOAD env); ptrace NOT COMPARABLE; dynamic_code_loading noisy=other-signal
+  independent recount_e7.py matches exactly (0/4, 7/9). Tracee v0.24.1 BLOCKED (GLIBC_2.38). Both sensors run from verified release dirs, residue removed, RC3 restored (E7tetragon + E7tracee restore.sh RESTORE OK)
+  D-E7-3: Tracee --containers flag removed (v0.23.2 enrichment default-on); attempt1 aborted on flag, no state change, retried once
+  9420eb3f3d7d163f85f5bc09158ece9697dece76d02b209d5ddd538524159765  rc4/tables/e7_tetragon_summary.csv
+  aa5222e5155c02149a6f8913e8ae365049c42bd3c51fb877e77f932decefb901  rc4/tables/e7_tracee_summary.csv
+  2f36a7bbb2b3d77a011383a01c8f804fe7761d934a76ff2fdf99ebad6f3e89ae  rc4/external/tetragon_v1.7.1/dl/tetragon-v1.7.1-amd64.tar.gz
+  6a3f2cdc5023bc833d261cf4e3d84ff258b24a8b313f8f20438f0b04842060fa  rc4/external/tracee_v0.23.2/dl/tracee-x86_64.v0.23.2.tar.gz
+
+[2026-11-04T15:33:34Z] RC4 CLEANUP
+- System state verified clean: /etc/falco/falco_rules.yaml=30a1a602 (RC3), rules.d empty, falco-modern-bpf active, falco-lab Internal=true, no Tetragon/Tracee systemd units / /usr/local|/opt residue / sensor containers.
+- All 6 restore points RESTORE OK (restore_points_log.md); RC3 149/149 + PRE_RC4 1895/1895 unchanged (integrity/POST_RC4_SHA256.txt).
+- v4 handoff built: Group8_RC4_Handoff_v4.zip sha256 688ed836044672b05426647b6e606283f0468661054d1d670c1f8bfe7d34acd0 (149 files, SHA256SUMS self-check OK).
+- Removing /etc/sudoers.d/90-claude-rc4 now; backstop timer run-r518c74d2…(fires 2026-11-05) left in place.
+- DONE 2026-11-04T15:34:17Z: /etc/sudoers.d/90-claude-rc4 removed; `sudo -n true` now returns "a password is required" (privilege revoked, proven).
+- CLAUDE.md TEMPORARY RC4 EXCEPTION line removed; the standing "No sudo for the assistant" rule is back in force.
