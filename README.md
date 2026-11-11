@@ -2,7 +2,7 @@
 
 **ANONYMOUS REPOSITORY URL: NOT AVAILABLE — PUBLICATION PENDING**
 
-Public export of the Group 8 IAM302 research project *"Evaluating Falco and Auditd for Detecting Fileless Execution in
+Public export of the research project *"Evaluating Falco and Auditd for Detecting Fileless Execution in
 Docker Containers"* (Falco 0.45 modern eBPF + Auditd, Docker / runc, Ubuntu 22.04, kernel 6.8, benign payloads only).
 
 > Group 8 collaboratively conducted the research, technical development, experimental preparation, evidence collection, analysis, and documentation activities described in this report.
